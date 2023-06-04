@@ -16,8 +16,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.12.16",
     "gatsby": "^5.10.0",
     "gatsby-plugin-emotion": "^8.10.0",
     "gatsby-plugin-google-gtag": "^5.10.0",
@@ -35,6 +37,11 @@
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "prettier": "^2.8.8",
     "typescript": "^5.0.4"
   }
 }
