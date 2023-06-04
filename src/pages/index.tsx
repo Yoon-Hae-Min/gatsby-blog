@@ -6,14 +6,14 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Box
+  Box,
+  useColorMode
 } from '@chakra-ui/react';
 import Header from '../components/Header/Header';
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
-      <Header />
       <main>
         <Accordion>
           <AccordionItem>
@@ -54,5 +54,3 @@ const IndexPage: React.FC<PageProps> = () => {
 };
 
 export default IndexPage;
-
-export const Head: HeadFC = () => <title>yoonhaemin</title>;

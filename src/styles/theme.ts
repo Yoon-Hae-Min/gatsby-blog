@@ -18,10 +18,11 @@ const theme = extendTheme({
   useSystemColorMode: true,
   styles: {
     global: (props: StyleFunctionProps) => ({
-      body: {
+      'html, body': {
         fontFamily: 'Pretendard',
         color: mode('gray.700', 'white.900')(props),
-        bg: mode('white.900', 'gray.400')(props)
+        bg: mode('white.900', 'gray.400')(props),
+        height: '100%'
       }
     })
   }
