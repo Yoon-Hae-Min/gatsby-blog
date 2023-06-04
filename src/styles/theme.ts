@@ -1,7 +1,11 @@
-import { StyleFunctionProps, defineStyle, extendTheme } from '@chakra-ui/react';
+import { StyleFunctionProps, extendTheme } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 
 const theme = extendTheme({
+  fonts: {
+    heading: `Pretendard, sans-serif`,
+    body: `Pretendard, sans-serif`
+  },
   colors: {
     gray: {
       200: '#B1B1B1',
@@ -18,8 +22,8 @@ const theme = extendTheme({
   useSystemColorMode: true,
   styles: {
     global: (props: StyleFunctionProps) => ({
-      'html, body': {
-        fontFamily: 'Pretendard',
+      body: {
+        fontWeight: 400,
         color: mode('gray.700', 'white.900')(props),
         bg: mode('white.900', 'gray.400')(props),
         height: '100%'

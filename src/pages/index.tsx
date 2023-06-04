@@ -9,7 +9,7 @@ import {
   Box,
   useColorMode
 } from '@chakra-ui/react';
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 
 const IndexPage: React.FC<PageProps> = () => {
   return (

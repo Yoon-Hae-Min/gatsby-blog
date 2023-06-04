@@ -105,11 +105,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "./src/**/*",
-    "./gatsby-node.ts",
-    "./gatsby-config.ts",
-    "./plugins/**/*",
-    "./gatsby-browser.tsx"
-  ]
+  "include": ["./src/**/*", "./gatsby-config.ts", "./plugins/**/*", "./gatsby-browser.tsx"]
 }

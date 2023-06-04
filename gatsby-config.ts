@@ -53,23 +53,14 @@ const config: GatsbyConfig = {
       }
     },
     {
-      resolve: '@chakra-ui/gatsby-plugin',
+      resolve: 'gatsby-plugin-web-font-loader',
       options: {
-        /**
-         * @property {boolean} [resetCSS=true]
-         * if false, this plugin will not use `<CSSReset />
-         */
-        resetCSS: true,
-        /**
-         * @property {boolean} [isUsingColorMode=true]
-         * if false, this plugin will not use <ColorModeProvider />
-         */
-        isUsingColorMode: true,
-        /**
-         * @property {boolean} [isBaseProvider=false]
-         * if true, will render `<ChakraBaseProvider>`
-         */
-        isBaseProvider: false
+        custom: {
+          families: ['Pretendard'],
+          urls: [
+            'https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css'
+          ]
+        }
       }
     }
   ]
