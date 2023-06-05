@@ -1,5 +1,6 @@
 import { Box, Divider, Heading, Image, Text, useColorMode, useTheme } from '@chakra-ui/react';
 import React from 'react';
+
 import GithubIcon from '@/assets/svg/github.svg';
 import GmailIcon from '@/assets/svg/gmail.svg';
 import LinkedInIcon from '@/assets/svg/linkedin.svg';

@@ -1,4 +1,4 @@
-import { Box, useColorMode } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
 const RootLayout = ({ children }: { children: ReactNode }) => {

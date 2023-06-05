@@ -1,17 +1,9 @@
+import { Box } from '@chakra-ui/react';
+import type { PageProps } from 'gatsby';
 import * as React from 'react';
-import type { HeadFC, PageProps } from 'gatsby';
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  useColorMode
-} from '@chakra-ui/react';
-import Header from '../components/Header';
-import SummaryCard from '@/components/SummaryCard';
+
 import ProfileCard from '@/components/ProfileCard';
+import SummaryCard from '@/components/SummaryCard';
 
 const IndexPage: React.FC<PageProps> = () => {
   return (

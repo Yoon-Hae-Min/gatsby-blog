@@ -1,7 +1,7 @@
-import { Box, Spacer, useColorModeValue } from '@chakra-ui/react';
+import { Box, Spacer } from '@chakra-ui/react';
 import React from 'react';
+
 import Logo from './Logo';
-import HeaderButton from './HeaderButton';
 import ToggleThemeButton from './ToggleThemeButton';
 
 const Header = () => {
