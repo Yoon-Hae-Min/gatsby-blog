@@ -10,44 +10,18 @@ import {
   useColorMode
 } from '@chakra-ui/react';
 import Header from '../components/Header';
+import SummaryCard from '@/components/SummaryCard';
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
       <main>
-        <Accordion>
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box as="span" flex="1" textAlign="left">
-                  Section 1 title
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </AccordionPanel>
-          </AccordionItem>
-
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box as="span" flex="1" textAlign="left">
-                  Section 2 title
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
+        <Box as="div" display="grid" gridTemplateColumns="1fr 1fr 1fr">
+          <SummaryCard title="총 포스트">8일</SummaryCard>
+          <SummaryCard title="방문자수">0명</SummaryCard>
+          <SummaryCard title="테마가 바뀐 횟수">0번</SummaryCard>
+          <SummaryCard title="블로그를 시작한지">0일</SummaryCard>
+        </Box>
       </main>
     </>
   );
