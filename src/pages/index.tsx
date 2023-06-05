@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 import type { PageProps } from 'gatsby';
 import * as React from 'react';
 
@@ -16,6 +16,16 @@ const IndexPage: React.FC<PageProps> = () => {
           <SummaryCard title="테마가 바뀐 횟수">0번</SummaryCard>
           <SummaryCard title="블로그를 시작한지">0일</SummaryCard>
         </Box>
+        <Heading
+          as="h2"
+          fontWeight={700}
+          textAlign="center"
+          size="2xl"
+          marginTop="8rem"
+          marginBottom="2rem"
+        >
+          ALL POSTS
+        </Heading>
       </main>
     </>
   );
