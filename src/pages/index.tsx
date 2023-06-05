@@ -2,8 +2,10 @@ import { Box, Heading } from '@chakra-ui/react';
 import type { PageProps } from 'gatsby';
 import * as React from 'react';
 
+import PostCard from '@/components/PostCard';
 import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
+import TagList from '@/components/TagList';
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -26,6 +28,22 @@ const IndexPage: React.FC<PageProps> = () => {
         >
           ALL POSTS
         </Heading>
+        <TagList />
+        <Box
+          as="section"
+          display="grid"
+          gridTemplateColumns="1fr 1fr"
+          gap="3rem"
+          marginBottom="4rem"
+          marginTop="1rem"
+        >
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+        </Box>
       </main>
     </>
   );
