@@ -1,4 +1,5 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
+import { navigate } from 'gatsby';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
 
@@ -25,6 +26,7 @@ const PostCard = ({ title, tag, date, thumbnail }: Props) => {
       width="100%"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={() => navigate(`/blog/${title}`)}
     >
       <Box height="100%" width="100%" overflow="hidden" borderRadius="0.3rem">
         {image && (
