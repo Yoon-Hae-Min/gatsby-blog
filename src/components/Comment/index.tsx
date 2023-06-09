@@ -1,15 +1,23 @@
-import { Box } from '@chakra-ui/react';
+import { Box, useColorMode } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
 const Comment = () => {
+  const { colorMode } = useColorMode();
   useEffect(() => {
     const utterances = document.createElement('script');
     const attributes = {
-      src: 'https://utteranc.es/client.js',
-      repo: 'Yoon-Hae-Min/Yoon-Hae-Min.github.io',
-      'issue-term': 'pathname',
-      label: 'comment',
-      theme: 'github-light',
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'Yoon-Hae-Min/Yoon-Hae-Min.github.io',
+      'data-repo-id': 'R_kgDOJrk_pw',
+      'data-category': 'Comment',
+      'data-category-id': 'DIC_kwDOJrk_p84CXFL2',
+      'data-mapping': 'pathname',
+      'data-strict': '0',
+      'data-reactions-enabled': '1',
+      'data-metadata': '0',
+      'data-input-position': 'bottom',
+      'data-theme': colorMode === 'light' ? 'light_tritanopia' : 'dark_dimmed',
+      'data-lang': 'ko',
       crossOrigin: 'anonymous',
       async: 'true'
     };
@@ -18,8 +26,8 @@ const Comment = () => {
     });
     const commentElement = document.getElementById('comment');
     commentElement?.appendChild(utterances);
-  }, []);
-  return <Box id="comment" mt="4rem" mb="3rem" />;
+  }, [colorMode]);
+  return <Box id="comment" mt="3rem" mb="6rem" />;
 };
 
 export default Comment;

@@ -10,7 +10,7 @@ const PostDetailPage = ({ data, children }) => {
   const metaTags = data.mdx.frontmatter;
   console.log(data, children);
   return (
-    <div>
+    <Box width="60rem" margin="auto">
       <Box as="article">
         <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
           <Tag color="white.900" size="lg">
@@ -24,7 +24,7 @@ const PostDetailPage = ({ data, children }) => {
       </Box>
       <MarkDownProvider>{children}</MarkDownProvider>
       <Comment />
-    </div>
+    </Box>
   );
 };
 
