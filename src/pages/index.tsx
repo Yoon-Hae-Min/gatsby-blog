@@ -2,14 +2,15 @@ import { Box, Heading } from '@chakra-ui/react';
 import type { PageProps } from 'gatsby';
 import * as React from 'react';
 
+import RootLayout from '@/components/Layout/RootLayout';
 import PostCard from '@/components/PostCard';
 import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
 import TagList from '@/components/TagList';
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage: React.FC<PageProps> = ({ location }) => {
   return (
-    <>
+    <RootLayout pathname={location.pathname}>
       <main>
         <Box as="div" display="grid" gridTemplateColumns="1fr 1fr 1fr" gridRowGap="6rem">
           <SummaryCard title="총 포스트">8일</SummaryCard>
@@ -45,7 +46,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <PostCard />
         </Box>
       </main>
-    </>
+    </RootLayout>
   );
 };
 
