@@ -43,7 +43,7 @@ const Header = ({ pathname }: { pathname: string }) => {
           size="xs"
           width="100%"
           position="sticky"
-          display={pathname === '/' ? 'none' : 'block'}
+          display={/blog/.test(pathname) ? 'block' : 'none'}
         />
       </Box>
     </>
