@@ -1,4 +1,13 @@
-import { Box, Divider, Heading, Image, Text, useColorMode, useTheme } from '@chakra-ui/react';
+import {
+  Box,
+  Divider,
+  Heading,
+  IconButton,
+  Image,
+  Text,
+  useColorMode,
+  useTheme
+} from '@chakra-ui/react';
 import React from 'react';
 
 import GithubIcon from '@/assets/svg/github.svg';
@@ -36,19 +45,56 @@ const ProfileCard = ({ ...props }) => {
         #FE 개발, #React #NextJs #HTML #CSS #Javascript #typescript
       </Text>
       <Divider borderWidth="0.1rem" backgroundColor="white.900" />
-      <Box display="flex" columnGap="1.6rem" marginTop="0.9rem">
-        <GithubIcon
-          style={{ fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900] }}
-        />
-        <GmailIcon
-          style={{ fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900] }}
-        />
-        <LinkedInIcon
-          style={{ fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900] }}
-        />
-        <ResumeIcon
-          style={{ fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900] }}
-        />
+      <Box display="flex" columnGap="1rem" marginTop="0.9rem">
+        <IconButton
+          aria-label="github"
+          backgroundColor={colorMode === 'dark' ? theme.colors.gray[400] : theme.colors.white[900]}
+          as="a"
+          href="https://github.com/Yoon-Hae-Min"
+          target="_blank"
+        >
+          <GithubIcon
+            style={{
+              fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900]
+            }}
+          />
+        </IconButton>
+        <IconButton
+          aria-label="gmail"
+          backgroundColor={colorMode === 'dark' ? theme.colors.gray[400] : theme.colors.white[900]}
+          as="a"
+          href="mailto:yunhatmi@naver.com"
+          target="_blank"
+        >
+          <GmailIcon
+            style={{
+              fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900]
+            }}
+          />
+        </IconButton>
+        <IconButton
+          aria-label="github"
+          backgroundColor={colorMode === 'dark' ? theme.colors.gray[400] : theme.colors.white[900]}
+          as="a"
+          href="https://www.linkedin.com/in/%ED%95%B4%EB%AF%BC-%EC%9C%A4-b7b7b025b/"
+          target="_blank"
+        >
+          <LinkedInIcon
+            style={{
+              fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900]
+            }}
+          />
+        </IconButton>
+        <IconButton
+          aria-label="github"
+          backgroundColor={colorMode === 'dark' ? theme.colors.gray[400] : theme.colors.white[900]}
+        >
+          <ResumeIcon
+            style={{
+              fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900]
+            }}
+          />
+        </IconButton>
       </Box>
     </Box>
   );
