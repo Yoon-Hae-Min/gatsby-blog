@@ -8,32 +8,7 @@ import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
 import TagList from '@/components/TagList';
 
-type Props = {
-  data: {
-    allMdx: {
-      edges: {
-        node: {
-          id: string;
-          frontmatter: {
-            title: string;
-            tag: string;
-            date: string;
-            thumbnail: {
-              childImageSharp: {
-                gatsbyImageData: any;
-              };
-            };
-          };
-        };
-      }[];
-    };
-  };
-  location: {
-    pathname: string;
-  };
-};
-
-const IndexPage = ({ data, location }: Props) => {
+const TagPage = ({ data, location }) => {
   const cardData = data.allMdx.edges;
   return (
     <RootLayout pathname={location.pathname}>
@@ -73,11 +48,11 @@ const IndexPage = ({ data, location }: Props) => {
   );
 };
 
-export default IndexPage;
+export default TagPage;
 
 export const query = graphql`
-  query MyQuery {
-    allMdx {
+  query MyQuery($frontmatter__tag: String) {
+    allMdx(filter: { frontmatter: { tag: { eq: $frontmatter__tag } } }) {
       edges {
         node {
           id

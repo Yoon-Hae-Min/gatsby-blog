@@ -1,10 +1,17 @@
-import { Box, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
+import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
 
-import thumbnail from '@/images/sample.png';
+type Props = {
+  title: string;
+  tag: string;
+  date: string;
+  thumbnail: ImageDataLike;
+};
 
-const PostCard = () => {
+const PostCard = ({ title, tag, date, thumbnail }: Props) => {
   const [isHover, setIsHover] = useState(false);
+  const image = getImage(thumbnail);
   const handleMouseEnter = () => {
     setIsHover(true);
   };
@@ -20,16 +27,20 @@ const PostCard = () => {
       onMouseLeave={handleMouseLeave}
     >
       <Box height="100%" width="100%" overflow="hidden" borderRadius="0.3rem">
-        <Image
-          src={thumbnail}
-          alt="thumbnail"
-          cursor="pointer"
-          transition="transform 0.2s ease"
-          transform={isHover ? 'scale(1.1)' : 'scale(1)'}
-        />
+        {image && (
+          <GatsbyImage
+            image={image}
+            alt="thumbnail"
+            style={{
+              cursor: 'pointer',
+              transition: 'transform 0.2s ease',
+              transform: isHover ? 'scale(1.1)' : 'scale(1)'
+            }}
+          />
+        )}
       </Box>
       <Text fontSize="md" fontWeight={600} marginTop="0.5rem">
-        회고록
+        {tag}
       </Text>
       <Heading
         as="h4"
@@ -38,9 +49,9 @@ const PostCard = () => {
         transition="textDecoration 0.2s ease"
         textDecoration={isHover ? 'underline' : 'none'}
       >
-        리액트 노드버드 NextJs 13 공모전 후기
+        {title}
       </Heading>
-      <Text fontSize="sm">2023.03.28</Text>
+      <Text fontSize="sm">{date}</Text>
     </Box>
   );
 };
