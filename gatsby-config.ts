@@ -33,8 +33,8 @@ const config: GatsbyConfig = {
         trackingIds: ['G-1LMK92HZB2']
       }
     },
-    'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
+    'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
@@ -79,7 +79,17 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        extensions: [`.mdx`, `.md`]
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+              wrapperStyle: 'margin: 1.8rem auto;',
+              showCaptions: true
+            }
+          }
+        ]
       }
     }
   ]

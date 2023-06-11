@@ -26,7 +26,11 @@ const theme = extendTheme({
         fontWeight: 400,
         color: mode('gray.700', 'white.900')(props),
         bg: mode('white.900', 'gray.400')(props),
-        height: '100%'
+        height: '100%',
+        '.gatsby-resp-image-figcaption': {
+          'text-align': 'center',
+          padding: '0.3rem'
+        }
       }
     })
   }
