@@ -4,13 +4,14 @@ import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
 
 type Props = {
+  slug: string;
   title: string;
   tag: string;
-  date: string;
+  createAt: string;
   thumbnail: ImageDataLike;
 };
 
-const PostCard = ({ title, tag, date, thumbnail }: Props) => {
+const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const image = getImage(thumbnail);
   const handleMouseEnter = () => {
@@ -26,7 +27,7 @@ const PostCard = ({ title, tag, date, thumbnail }: Props) => {
       width="100%"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() => navigate(`/blog/${title}`)}
+      onClick={() => navigate(`/blog/${slug}`)}
     >
       <Box height="100%" width="100%" overflow="hidden" borderRadius="0.3rem">
         {image && (
@@ -53,7 +54,7 @@ const PostCard = ({ title, tag, date, thumbnail }: Props) => {
       >
         {title}
       </Heading>
-      <Text fontSize="sm">{date}</Text>
+      <Text fontSize="sm">{createAt}</Text>
     </Box>
   );
 };

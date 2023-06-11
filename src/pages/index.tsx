@@ -17,15 +17,17 @@ type Props = {
           frontmatter: {
             title: string;
             tag: string;
-            date: string;
+            createAt: string;
             thumbnail: {
               childImageSharp: {
                 gatsbyImageData: any;
               };
             };
+            slug: string;
           };
         };
       }[];
+      totalCount: number;
     };
   };
   location: {
@@ -35,11 +37,12 @@ type Props = {
 
 const IndexPage = ({ data, location }: Props) => {
   const cardData = data.allMdx.edges;
+  const totalPost = data.allMdx.totalCount;
   return (
     <RootLayout pathname={location.pathname}>
       <main>
         <Box as="div" display="grid" gridTemplateColumns="1fr 1fr 1fr" gridRowGap="6rem">
-          <SummaryCard title="총 포스트">8일</SummaryCard>
+          <SummaryCard title="총 포스트">{totalPost}개</SummaryCard>
           <SummaryCard title="방문자수">0명</SummaryCard>
           <ProfileCard gridRow="span 2" />
           <SummaryCard title="테마가 바뀐 횟수">0번</SummaryCard>
@@ -84,15 +87,17 @@ export const query = graphql`
           frontmatter {
             title
             tag
-            date(formatString: "YYYY.MM.DD")
+            createAt(formatString: "YYYY.MM.DD")
             thumbnail {
               childImageSharp {
                 gatsbyImageData
               }
             }
+            slug
           }
         }
       }
+      totalCount
     }
   }
 `;

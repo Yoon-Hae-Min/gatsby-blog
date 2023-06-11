@@ -59,7 +59,7 @@ export const query = graphql`
           frontmatter {
             title
             tag
-            date(formatString: "YYYY.MM.DD")
+            createAt(formatString: "YYYY.MM.DD")
             thumbnail {
               childImageSharp {
                 gatsbyImageData
