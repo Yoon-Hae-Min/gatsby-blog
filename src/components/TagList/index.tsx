@@ -2,9 +2,11 @@ import { Box, Text, useColorMode } from '@chakra-ui/react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 
+import { TAG_MAP } from '@/constants/md';
+
 type TagList = {
   allMdx: {
-    distinct: string[];
+    distinct: (keyof typeof TAG_MAP)[];
   };
 };
 
@@ -19,8 +21,8 @@ const TagList = ({ pathname }: { pathname: string }) => {
   `);
   const tagList = allMdx.distinct;
   const colorMap = {
-    dark: (currentTag: boolean) => (currentTag ? 'white.900' : 'gray.200'),
-    light: (currentTag: boolean) => (currentTag ? 'gray.700' : 'gray.200')
+    dark: (isSelected: boolean) => (isSelected ? 'white.900' : 'gray.200'),
+    light: (isSelected: boolean) => (isSelected ? 'gray.700' : 'gray.200')
   };
   return (
     <Box as="nav" display="flex" flexDirection="row" gap="0.5rem">
@@ -37,7 +39,7 @@ const TagList = ({ pathname }: { pathname: string }) => {
               fontWeight={700}
               color={colorMap[colorMode](pathname === `/tag/${tag}/`)}
             >
-              #{tag}
+              #{TAG_MAP[tag]}
             </Text>
           </Link>
         );
