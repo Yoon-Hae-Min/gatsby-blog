@@ -32,12 +32,16 @@
     "gatsby-plugin-sitemap": "^6.10.0",
     "gatsby-plugin-typescript": "^5.10.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
+    "gatsby-remark-gifs": "^1.2.0",
     "gatsby-remark-images": "^7.10.0",
+    "gatsby-remark-prismjs": "^7.10.0",
     "gatsby-source-filesystem": "^5.10.0",
     "gatsby-transformer-remark": "^6.10.0",
     "gatsby-transformer-sharp": "^5.10.0",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
