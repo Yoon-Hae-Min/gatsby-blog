@@ -1,6 +1,19 @@
-import type { GatsbyConfig } from 'gatsby';
+import { dirname } from 'path';
+import remarkGfm from 'remark-gfm';
+import { fileURLToPath } from 'url';
 
-const config: GatsbyConfig = {
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const wrapESMPlugin = (name) =>
+  function wrapESM(opts) {
+    return async (...args) => {
+      const mod = await import(name);
+      const plugin = mod.default(opts);
+      return plugin(...args);
+    };
+  };
+
+const config = {
   siteMetadata: {
     title: `yoonhaemin blog`,
     siteUrl: `https://www.yourdomain.tld`
@@ -8,6 +21,7 @@ const config: GatsbyConfig = {
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
+
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-emotion',
@@ -34,7 +48,9 @@ const config: GatsbyConfig = {
       }
     },
     'gatsby-plugin-sharp',
-    'gatsby-transformer-remark',
+    {
+      resolve: 'gatsby-transformer-remark'
+    },
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
@@ -80,13 +96,47 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: [`.mdx`, `.md`],
+        mdxOptions: {
+          remarkPlugins: [remarkGfm]
+        },
         gatsbyRemarkPlugins: [
+          'gatsby-remark-gifs',
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1200,
               wrapperStyle: 'margin: 1.8rem auto;',
               showCaptions: true
+            }
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: 'language-',
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: false,
+              languageExtensions: [
+                {
+                  language: 'superscript',
+                  extend: 'javascript',
+                  definition: {
+                    superscript_types: /(SuperType)/
+                  },
+                  insertBefore: {
+                    function: {
+                      superscript_keywords: /(superif|superelse)/
+                    }
+                  }
+                }
+              ],
+              prompt: {
+                user: 'root',
+                host: 'localhost',
+                global: false
+              },
+              escapeEntities: {}
             }
           }
         ]
