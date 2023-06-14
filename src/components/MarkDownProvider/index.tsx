@@ -44,6 +44,9 @@ const components = {
         '* > ul': {
           margin: 0,
           marginLeft: '1.6rem'
+        },
+        '> p': {
+          display: 'inline'
         }
       }}
       my={'1.2rem'}
