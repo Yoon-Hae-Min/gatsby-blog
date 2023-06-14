@@ -3,10 +3,12 @@ import { navigate } from 'gatsby';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
 
+import { TAG_MAP } from '@/constants/md';
+
 type Props = {
   slug: string;
   title: string;
-  tag: string;
+  tag: keyof typeof TAG_MAP;
   createAt: string;
   thumbnail: ImageDataLike;
 };
@@ -43,7 +45,7 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
         )}
       </Box>
       <Text fontSize="md" fontWeight={600} marginTop="0.5rem">
-        {tag}
+        {TAG_MAP[tag]}
       </Text>
       <Heading
         as="h4"
