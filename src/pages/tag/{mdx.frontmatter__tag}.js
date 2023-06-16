@@ -8,6 +8,8 @@ import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
 import TagList from '@/components/TagList';
 
+import { DOMAIN } from '../../constants';
+
 const TagPage = ({ data, location }) => {
   const cardData = data.allMdx.edges;
   return (
@@ -72,3 +74,14 @@ export const query = graphql`
     }
   }
 `;
+
+export const Head = ({ data }) => {
+  return (
+    <>
+      <title>FE haemin</title>
+      <meta name="author" content="yoonhaemin" />
+      <meta name="description" content="프론트엔드 개발자 만두피의 공간입니다." />
+      <link rel="canonical" href={DOMAIN} />
+    </>
+  );
+};

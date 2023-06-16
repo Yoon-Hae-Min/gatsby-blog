@@ -1,5 +1,5 @@
 import { Box, Heading } from '@chakra-ui/react';
-import { graphql } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
 
 import RootLayout from '@/components/Layout/RootLayout';
@@ -7,36 +7,10 @@ import PostCard from '@/components/PostCard';
 import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
 import TagList from '@/components/TagList';
+import { DOMAIN } from '@/constants';
 import { TAG_MAP } from '@/constants/md';
 
-type Props = {
-  data: {
-    allMdx: {
-      edges: {
-        node: {
-          id: string;
-          frontmatter: {
-            title: string;
-            tag: keyof typeof TAG_MAP;
-            createAt: string;
-            thumbnail: {
-              childImageSharp: {
-                gatsbyImageData: any;
-              };
-            };
-            slug: string;
-          };
-        };
-      }[];
-      totalCount: number;
-    };
-  };
-  location: {
-    pathname: string;
-  };
-};
-
-const IndexPage = ({ data, location }: Props) => {
+const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
   const cardData = data.allMdx.edges;
   const totalPost = data.allMdx.totalCount;
   return (
@@ -69,7 +43,15 @@ const IndexPage = ({ data, location }: Props) => {
           marginTop="1rem"
         >
           {cardData.map((card) => {
-            return <PostCard {...card.node.frontmatter} />;
+            return (
+              <PostCard
+                title={card.node.frontmatter?.title!}
+                slug={card.node.frontmatter?.slug!}
+                tag={card.node.frontmatter?.tag as keyof typeof TAG_MAP}
+                createAt={card.node.frontmatter?.createAt!}
+                thumbnail={card.node.frontmatter?.thumbnail?.childImageSharp?.gatsbyImageData!}
+              />
+            );
           })}
         </Box>
       </main>
@@ -80,7 +62,7 @@ const IndexPage = ({ data, location }: Props) => {
 export default IndexPage;
 
 export const query = graphql`
-  query MyQuery {
+  query BlogInfoList {
     allMdx {
       edges {
         node {
@@ -102,3 +84,14 @@ export const query = graphql`
     }
   }
 `;
+
+export const Head = ({ data }: PageProps<Queries.BlogInfoListQuery>) => {
+  return (
+    <>
+      <title>FE haemin</title>
+      <meta name="author" content="yoonhaemin" />
+      <meta name="description" content="프론트엔드 개발자 만두피의 공간입니다." />
+      <link rel="canonical" href={DOMAIN} />
+    </>
+  );
+};

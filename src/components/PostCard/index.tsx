@@ -6,11 +6,11 @@ import React, { useState } from 'react';
 import { TAG_MAP } from '@/constants/md';
 
 type Props = {
-  slug: string;
-  title: string;
-  tag: keyof typeof TAG_MAP;
-  createAt: string;
-  thumbnail: ImageDataLike;
+  slug: string | null;
+  title: string | null;
+  tag: keyof typeof TAG_MAP | null;
+  createAt: string | null;
+  thumbnail: ImageDataLike | null;
 };
 
 const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
@@ -45,7 +45,7 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
         )}
       </Box>
       <Text fontSize="md" fontWeight={600} marginTop="0.5rem">
-        {TAG_MAP[tag]}
+        {tag ? TAG_MAP[tag] : '미분류'}
       </Text>
       <Heading
         as="h4"
