@@ -4,6 +4,7 @@ slug: 'syncronize-following-follower-modal'
 tag: 'technical-experience'
 createAt: '2023-01-30'
 thumbnail: './thumbnail.png'
+description: 'react-query의 queryClient를 이용해서 팔로우 팔로워 모달창을 동기화 시켜보자'
 ---
 
 ### 진행 동기

@@ -4,6 +4,7 @@ slug: 'global-state-unnecessary-react-query'
 tag: 'technical-experience'
 createAt: '2023-01-06'
 thumbnail: './thumbnail.png'
+description: 'React Query를 사용하면서 생긴 오해와 진실'
 ---
 
 ## 발단

@@ -4,6 +4,7 @@ slug: 'prography-planning'
 tag: 'prography'
 createAt: '2023-05-15'
 thumbnail: './thumbnail.png'
+description: '프로그라피 발표를 토대로 작성하는 프로젝트를 0부터 기획해보기'
 ---
 
 > 본 글은 프로그라피 초반에 기획단계에 관련된 글로 기획을 해보지 않은 필자의 밑바닥부터 고민한 경험입니다. 어떤 방식으로 흘러갔는지에 초점을 두어서 편안한 마음으로 읽어주시면 감사하겠습니다.

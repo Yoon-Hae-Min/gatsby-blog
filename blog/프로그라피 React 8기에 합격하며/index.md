@@ -4,6 +4,7 @@ slug: 'prography-react-8th'
 tag: 'prography'
 createAt: '2023-02-15'
 thumbnail: './thumbnail.png'
+description: '처음으로 합격해본 직장인과 함께해보는 개발동아리'
 ---
 
 ### 지원동기

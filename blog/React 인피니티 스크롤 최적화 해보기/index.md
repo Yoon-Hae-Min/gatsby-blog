@@ -4,6 +4,7 @@ slug: 'optimize-infinity-scroll'
 tag: 'technical-experience'
 createAt: '2023-01-25'
 thumbnail: './thumbnail.png'
+desciption: 'react-virtualized를 이용한 인피니티 스크롤 최적화'
 ---
 
 ## 진행 동기

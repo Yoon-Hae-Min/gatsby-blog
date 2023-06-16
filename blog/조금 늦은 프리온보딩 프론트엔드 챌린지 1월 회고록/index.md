@@ -4,6 +4,7 @@ slug: 'pre-onboard-frontend-challenge'
 tag: 'review'
 createAt: '2023-01-28'
 thumbnail: './thumbnail.png'
+description: '원티드 프리온보딩 프론트엔드 챌린지 1월을 들으면서 느낀점'
 ---
 
 ### 기간

@@ -4,6 +4,7 @@ slug: 'react-nodebird'
 tag: 'review'
 createAt: '2023-03-28'
 thumbnail: './thumbnail.png'
+description: '제로초 스쿨의 첫 공모전인 리액트 노드버드리뉴얼 하기!!'
 ---
 
 NextJs를 다시 공부하던 중 [제로초스쿨슬랙](http://zerochoschool.slack.com)에서 다음과 같이 리액트노드버드 공모전이 열렸었다. React NodeBird 강의를 NextJs 13의 app directory를 이용해서 프론트엔드를 리뉴얼 하는 것이다.

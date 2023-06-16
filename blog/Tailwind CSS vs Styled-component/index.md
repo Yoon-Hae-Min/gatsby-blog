@@ -4,6 +4,7 @@ slug: 'tailwind-css-vs-styled-component'
 tag: 'technical-thinking'
 createAt: '2023-02-21'
 thumbnail: './thumbnail.png'
+description: '요즘 뜨고있는 Tailwind CSS와 너무나도 익숙한 Styled-component를 비교해보자'
 ---
 
 기존에 css-in-js 형식의 emotion과 styled-component를 자주 사용했다. 다만 사용하면서 변수명 짓기와 해당 클래스명을 찾으려면 파일을 띄워놓고 찾고 비교하는 등의 번거로움이 있었고 tailwind css는 이를 고려해서 만들었다기에 slack 클론 코딩에 적용하면서 도입해 보기로 하였다.

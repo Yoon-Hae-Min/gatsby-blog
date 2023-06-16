@@ -4,6 +4,7 @@ slug: 'react-query-vs-swr'
 tag: 'technical-thinking'
 createAt: '2023-02-26'
 thumbnail: './thumbnail.png'
+description: '비슷하지만 다른 react-query와 swr를 컨셉을 이해하며 비교해보자'
 ---
 
 ## 서론

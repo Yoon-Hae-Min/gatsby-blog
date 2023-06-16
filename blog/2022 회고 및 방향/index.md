@@ -4,6 +4,7 @@ slug: '2022-review'
 tag: 'review'
 createAt: '2022-12-22'
 thumbnail: './thumbnail.png'
+description: '2022년 회고 및 2023년 목표'
 ---
 
 ### 1\. 프론트엔드 시작
