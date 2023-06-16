@@ -7,8 +7,9 @@ import PostCard from '@/components/PostCard';
 import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
 import TagList from '@/components/TagList';
-import { DOMAIN } from '@/constants';
+import { BLOG_START_DATE, DOMAIN } from '@/constants';
 import { TAG_MAP } from '@/constants/md';
+import { diffCurrentDate } from '@/utils/diffCurrentDate';
 
 const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
   const cardData = data.allMdx.edges;
@@ -21,7 +22,7 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
           <SummaryCard title="방문자수">0명</SummaryCard>
           <ProfileCard gridRow="span 2" />
           <SummaryCard title="테마가 바뀐 횟수">0번</SummaryCard>
-          <SummaryCard title="블로그를 시작한지">0일</SummaryCard>
+          <SummaryCard title="블로그를 시작한지">{diffCurrentDate(BLOG_START_DATE)}일</SummaryCard>
         </Box>
         <Heading
           as="h2"
@@ -63,7 +64,7 @@ export default IndexPage;
 
 export const query = graphql`
   query BlogInfoList {
-    allMdx {
+    allMdx(sort: { frontmatter: { createAt: DESC } }) {
       edges {
         node {
           id
