@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const config = {
   siteMetadata: {
     title: `FE Haemin`,
-    siteUrl: 'http://localhost:9000',
+    siteUrl: 'https://yoon-hae-min.github.io/',
     description: '프론트엔드 개발자 만두피의 공간입니다.',
     charset: 'utf-8',
     author: `yoonhaemin`
