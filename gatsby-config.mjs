@@ -4,19 +4,13 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const wrapESMPlugin = (name) =>
-  function wrapESM(opts) {
-    return async (...args) => {
-      const mod = await import(name);
-      const plugin = mod.default(opts);
-      return plugin(...args);
-    };
-  };
-
 const config = {
   siteMetadata: {
-    title: `yoonhaemin blog`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `FE Haemin`,
+    siteUrl: 'https://yoon-hae-min.github.io/',
+    description: '프론트엔드 개발자 만두피의 공간입니다.',
+    charset: 'utf-8',
+    author: `yoonhaemin`
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -24,6 +18,12 @@ const config = {
 
   graphqlTypegen: true,
   plugins: [
+    {
+      resolve: 'gatsby-plugin-google-gtag',
+      options: {
+        trackingIds: ['G-9ZZV8B7KWG']
+      }
+    },
     'gatsby-plugin-emotion',
     'gatsby-plugin-image',
     'gatsby-plugin-sitemap',
@@ -41,12 +41,7 @@ const config = {
         icon: 'src/images/icon.png'
       }
     },
-    {
-      resolve: 'gatsby-plugin-google-gtag',
-      options: {
-        trackingIds: ['G-1LMK92HZB2']
-      }
-    },
+
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-transformer-remark'
@@ -140,6 +135,21 @@ const config = {
             }
           }
         ]
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://yoon-hae-min.github.io/',
+        sitemap: 'https://yoon-hae-min.github.io/sitemap.xml',
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }]
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }]
+          }
+        }
       }
     }
   ]
