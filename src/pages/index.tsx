@@ -7,6 +7,7 @@ import PostCard from '@/components/PostCard';
 import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
 import TagList from '@/components/TagList';
+import { TAG_MAP } from '@/constants/md';
 
 type Props = {
   data: {
@@ -16,7 +17,7 @@ type Props = {
           id: string;
           frontmatter: {
             title: string;
-            tag: string;
+            tag: keyof typeof TAG_MAP;
             createAt: string;
             thumbnail: {
               childImageSharp: {
