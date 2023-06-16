@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const config = {
   siteMetadata: {
     title: `FE Haemin`,
-    siteUrl: 'https://yoon-hae-min.github.io/',
+    siteUrl: 'http://localhost:9000',
     description: '프론트엔드 개발자 만두피의 공간입니다.',
     charset: 'utf-8',
     author: `yoonhaemin`
@@ -26,7 +26,7 @@ const config = {
     },
     'gatsby-plugin-emotion',
     'gatsby-plugin-image',
-    'gatsby-plugin-sitemap',
+    'gatsby-plugin-advanced-sitemap',
     {
       resolve: 'gatsby-plugin-typescript',
       options: {
