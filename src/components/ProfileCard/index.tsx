@@ -29,15 +29,17 @@ const ProfileCard = ({ ...props }) => {
     >
       <Image
         borderRadius="full"
-        boxSize="160px"
+        boxSize={['120px', '140px', '160px', '160px']}
         src="https://avatars.githubusercontent.com/u/49224104?v=4"
         alt="yoonhaemin profile image"
       />
-      <Heading size="lg" marginTop="1rem" fontWeight={700}>
+      <Heading size="lg" marginTop="1rem" fontWeight={700} fontSize={['xl', '3xl', '2xl', '3xl']}>
         윤해민
       </Heading>
       <Divider marginTop="0.5rem" borderWidth="0.1rem" backgroundColor="white.900" />
       <Text
+        size="md"
+        fontSize={['sm', 'md', 'sm', 'md']}
         fontWeight={700}
         padding="1rem"
         color={colorMode === 'light' ? 'gray.500' : 'white.800'}

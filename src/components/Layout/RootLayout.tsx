@@ -8,7 +8,7 @@ const RootLayout = ({ pathname, children }: { pathname: string; children: ReactN
   return (
     <>
       <Header pathname={pathname} />
-      <Box as="main" margin="auto" maxWidth="1160px" height="100%">
+      <Box as="main" margin="auto" maxWidth="1160px" height="100%" p="0.8rem">
         {children}
       </Box>
       <Footer />

@@ -25,9 +25,16 @@ const TagList = ({ pathname }: { pathname: string }) => {
     light: (isSelected: boolean) => (isSelected ? 'gray.700' : 'gray.200')
   };
   return (
-    <Box as="nav" display="flex" flexDirection="row" gap="0.5rem">
+    <Box as="nav">
       <Link to="/">
-        <Text fontSize="2xl" fontWeight={700} color={colorMap[colorMode](pathname === '/')}>
+        <Text
+          display="inline-block"
+          marginRight="1rem"
+          fontSize={['lg', 'xl', '2xl', '2xl']}
+          fontWeight={700}
+          color={colorMap[colorMode](pathname === '/')}
+          whiteSpace="nowrap"
+        >
           #전체
         </Text>
       </Link>
@@ -35,9 +42,12 @@ const TagList = ({ pathname }: { pathname: string }) => {
         return (
           <Link to={`/tag/${tag}`}>
             <Text
-              fontSize="2xl"
+              display="inline-block"
+              marginRight="1rem"
+              fontSize={['lg', 'xl', '2xl', '2xl']}
               fontWeight={700}
               color={colorMap[colorMode](pathname === `/tag/${tag}/`)}
+              whiteSpace="nowrap"
             >
               #{TAG_MAP[tag]}
             </Text>
