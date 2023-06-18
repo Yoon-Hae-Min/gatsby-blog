@@ -33,6 +33,9 @@ const TagList = ({ pathname }: { pathname: string }) => {
           fontSize={['lg', 'xl', '2xl', '2xl']}
           fontWeight={700}
           color={colorMap[colorMode](pathname === '/')}
+          _hover={{
+            textDecoration: 'underline'
+          }}
           whiteSpace="nowrap"
         >
           #전체
@@ -47,6 +50,9 @@ const TagList = ({ pathname }: { pathname: string }) => {
               fontSize={['lg', 'xl', '2xl', '2xl']}
               fontWeight={700}
               color={colorMap[colorMode](pathname === `/tag/${tag}/`)}
+              _hover={{
+                textDecoration: 'underline'
+              }}
               whiteSpace="nowrap"
             >
               #{TAG_MAP[tag]}
