@@ -1,6 +1,6 @@
 import { Box, Heading, Tag, Text, useColorMode } from '@chakra-ui/react';
 import { graphql } from 'gatsby';
-import { getImage } from 'gatsby-plugin-image';
+import { getSrc } from 'gatsby-plugin-image';
 import React from 'react';
 
 import Comment from '../../components/Comment';
@@ -15,7 +15,7 @@ const PostDetailPage = ({ data, children, location }) => {
 
   return (
     <RootLayout pathname={location.pathname}>
-      <Box as="section" width="60rem" margin="auto">
+      <Box as="section" maxWidth="60rem" margin="auto">
         <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
           <Tag color={colorMode === 'light' ? 'gray.700' : 'white.900'} size="lg">
             {TAG_MAP[metaTags.tag]}
@@ -71,7 +71,7 @@ export const Head = ({ data }) => {
       <meta property="og:description" content={metaTags.description} />
       <meta
         property="og:image"
-        content={getImage(metaTags.thumbnail.childImageSharp.gatsbyImageData)}
+        content={getSrc(metaTags.thumbnail.childImageSharp.gatsbyImageData)}
       />
       <meta property="og:site_name" content={metaTags.title} />
       <meta property="og:locale" content="ko_KR" />
@@ -82,7 +82,7 @@ export const Head = ({ data }) => {
       <meta name="twitter:description" content={metaTags.description} />
       <meta
         name="twitter:image"
-        content={getImage(metaTags.thumbnail.childImageSharp.gatsbyImageData)}
+        content={getSrc(metaTags.thumbnail.childImageSharp.gatsbyImageData)}
       />
     </>
   );
