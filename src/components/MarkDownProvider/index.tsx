@@ -69,7 +69,7 @@ const components = {
           borderColor: 'gray.500'
         }}
         _dark={{
-          bg: 'gray.800',
+          bg: 'gray.900',
           borderLeft: '0.4rem solid white'
         }}
         {...props}

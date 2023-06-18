@@ -17,7 +17,6 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
   return (
     <RootLayout pathname={location.pathname}>
       <Flex
-        width="100%"
         gap={['6rem', '5rem', '4rem', '5rem']}
         flexDirection={['column', 'column', 'row', 'row']}
       >
