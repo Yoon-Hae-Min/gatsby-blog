@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Heading, Tag, Text, useColorMode } from '@chakra-ui/react';
 import { navigate } from 'gatsby';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
@@ -14,6 +14,7 @@ type Props = {
 };
 
 const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
+  const { colorMode } = useColorMode();
   const [isHover, setIsHover] = useState(false);
   const image = getImage(thumbnail);
   const handleMouseEnter = () => {
@@ -22,16 +23,23 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
   const handleMouseLeave = () => {
     setIsHover(false);
   };
+  const handleEnterBlog = () => {
+    navigate(`/blog/${slug}`);
+  };
+  const handleEnterTag = () => {
+    navigate(`/tag/${tag}`);
+  };
   return (
-    <Box
-      as="article"
-      margin="auto"
-      width="100%"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={() => navigate(`/blog/${slug}`)}
-    >
-      <Box height="100%" width="100%" overflow="hidden" borderRadius="0.3rem">
+    <Box as="article" margin="auto" width="100%">
+      <Box
+        height="100%"
+        width="100%"
+        overflow="hidden"
+        borderRadius="0.3rem"
+        onClick={handleEnterBlog}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {image && (
           <GatsbyImage
             image={image}
@@ -44,15 +52,27 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
           />
         )}
       </Box>
-      <Text fontSize="md" fontWeight={600} marginTop="0.5rem">
+      <Tag
+        color={colorMode === 'light' ? 'gray.700' : 'white.900'}
+        fontSize="sm"
+        my="0.4rem"
+        fontWeight={600}
+        marginTop="0.5rem"
+        onClick={handleEnterTag}
+        cursor="pointer"
+      >
         {tag ? TAG_MAP[tag] : '미분류'}
-      </Text>
+      </Tag>
       <Heading
         as="h4"
         fontSize="2xl"
         fontWeight={700}
+        cursor="pointer"
         transition="textDecoration 0.2s ease"
         textDecoration={isHover ? 'underline' : 'none'}
+        onClick={handleEnterBlog}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         {title}
       </Heading>
