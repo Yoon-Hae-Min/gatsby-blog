@@ -26,13 +26,13 @@ const TagList = ({ pathname }: { pathname: string }) => {
   };
   return (
     <Box as="nav">
-      <Link to="/">
+      <Link to="/tag/all">
         <Text
           display="inline-block"
           marginRight="1rem"
           fontSize={['lg', 'xl', '2xl', '2xl']}
           fontWeight={700}
-          color={colorMap[colorMode](pathname === '/')}
+          color={colorMap[colorMode](pathname === '/tag/all/')}
           _hover={{
             textDecoration: 'underline'
           }}

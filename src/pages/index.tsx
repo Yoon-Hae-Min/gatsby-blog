@@ -1,14 +1,11 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
 
 import RootLayout from '@/components/Layout/RootLayout';
-import PostCard from '@/components/PostCard';
 import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
-import TagList from '@/components/TagList';
 import { BLOG_START_DATE, DOMAIN } from '@/constants';
-import { TAG_MAP } from '@/constants/md';
 import { diffCurrentDate } from '@/utils/diffCurrentDate';
 
 const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
@@ -35,39 +32,6 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
           <ProfileCard />
         </Box>
       </Flex>
-      <Box>
-        <Heading
-          as="h2"
-          fontWeight={700}
-          textAlign="center"
-          size="2xl"
-          marginTop={['8rem', '8rem', '9rem', '10rem']}
-          marginBottom="2rem"
-        >
-          ALL POSTS
-        </Heading>
-        <TagList pathname={location.pathname} />
-        <Box
-          as="section"
-          display="grid"
-          gridTemplateColumns={['1fr', '1fr ', '1fr 1fr', '1fr 1fr']}
-          gap="3rem"
-          marginBottom="4rem"
-          marginTop="1rem"
-        >
-          {cardData.map((card) => {
-            return (
-              <PostCard
-                title={card.node.frontmatter?.title!}
-                slug={card.node.frontmatter?.slug!}
-                tag={card.node.frontmatter?.tag as keyof typeof TAG_MAP}
-                createAt={card.node.frontmatter?.createAt!}
-                thumbnail={card.node.frontmatter?.thumbnail?.childImageSharp?.gatsbyImageData!}
-              />
-            );
-          })}
-        </Box>
-      </Box>
     </RootLayout>
   );
 };

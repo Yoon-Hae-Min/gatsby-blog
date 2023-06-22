@@ -30,6 +30,8 @@ const Header = ({ pathname }: { pathname: string }) => {
         position="sticky"
         top="0"
         width="100%"
+        display="block"
+        // backgroundColor="inherit"
         backgroundColor={colorMode === 'light' ? 'white.900' : 'gray.400'}
         zIndex={100}
       >
@@ -43,7 +45,7 @@ const Header = ({ pathname }: { pathname: string }) => {
           size="xs"
           width="100%"
           position="sticky"
-          display={/blog/.test(pathname) ? 'block' : 'none'}
+          display={/\/blog\//.test(pathname) ? 'block' : 'none'}
         />
       </Box>
     </>
