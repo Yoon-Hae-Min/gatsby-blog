@@ -1,7 +1,7 @@
 import { Box, Progress, Spacer, useColorMode } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
-import Logo from './Logo';
+import TitleLink from './TitleLink';
 import ToggleThemeButton from './ToggleThemeButton';
 
 const Header = ({ pathname }: { pathname: string }) => {
@@ -36,8 +36,9 @@ const Header = ({ pathname }: { pathname: string }) => {
         zIndex={100}
       >
         <Box p={2} display="flex" alignItems="center">
-          <Logo />
+          <TitleLink to="/">yoonhaemin.com</TitleLink>
           <Spacer />
+          <TitleLink to="/tag/all">Posts</TitleLink>
           <ToggleThemeButton />
         </Box>
         <Progress

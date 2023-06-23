@@ -1,13 +1,18 @@
 import { Heading } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-const Logo = () => {
+type TitleProps = {
+  children: ReactNode;
+  to: string;
+};
+
+const TitleLink = ({ children, to }: TitleProps) => {
   return (
-    <Link to="/">
-      <LogoHeading as="h4" size="md" letterSpacing="-0.2px" fontWeight={700}>
-        yoonhaemin.com
+    <Link to={to}>
+      <LogoHeading as="h4" size="md" letterSpacing="-0.2px" fontWeight={700} p={2}>
+        {children}
       </LogoHeading>
     </Link>
   );
@@ -35,4 +40,4 @@ const LogoHeading = styled(Heading)`
   }
 `;
 
-export default Logo;
+export default TitleLink;
