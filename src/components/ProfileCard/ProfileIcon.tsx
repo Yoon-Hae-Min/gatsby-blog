@@ -18,7 +18,7 @@ const ProfileIcon = ({ name, path, children }: ProfileIconProps) => {
     >
       <IconButton
         aria-label={name}
-        backgroundColor={colorMode === 'dark' ? theme.colors.gray[400] : theme.colors.white[900]}
+        backgroundColor={colorMode === 'dark' ? theme.colors.gray[500] : theme.colors.white[900]}
         as="a"
         href={path}
         target="_blank"

@@ -20,6 +20,7 @@ const SummaryCard = ({ title, children }: Props) => {
         textAlign="center"
         width="100%"
         fontWeight="600"
+        position="relative"
         fontSize={['md', 'xl', 'xl', '2xl']}
       >
         {title}

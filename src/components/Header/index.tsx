@@ -1,6 +1,8 @@
 import { Box, Progress, Spacer, useColorMode } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
+import { HEADER_HEIGHT } from '@/constants/css';
+
 import TitleLink from './TitleLink';
 import ToggleThemeButton from './ToggleThemeButton';
 
@@ -30,6 +32,7 @@ const Header = ({ pathname }: { pathname: string }) => {
         position="sticky"
         top="0"
         width="100%"
+        height={HEADER_HEIGHT}
         display="block"
         // backgroundColor="inherit"
         backgroundColor={colorMode === 'light' ? 'white.900' : 'gray.400'}
