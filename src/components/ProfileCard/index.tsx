@@ -36,7 +36,8 @@ const ProfileCard = ({ ...props }) => {
         fontSize={['sm', 'md', 'sm', 'md']}
         fontWeight={700}
         padding="1rem"
-        color={colorMode === 'light' ? 'gray.500' : 'white.800'}
+        _dark={{ color: 'gray.500' }}
+        _light={{ color: 'white.800' }}
       >
         #FE 개발, #React #NextJs #HTML #CSS #Javascript #typescript
       </Text>

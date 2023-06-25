@@ -34,7 +34,7 @@ const theme = extendTheme({
         height: '100%'
       },
       '.gatsby-resp-image-figcaption': {
-        'text-align': 'center',
+        textAlign: 'center',
         padding: '0.3rem'
       }
     })

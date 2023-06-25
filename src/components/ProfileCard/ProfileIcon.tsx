@@ -1,4 +1,4 @@
-import { IconButton, Tooltip, useColorMode, useTheme } from '@chakra-ui/react';
+import { IconButton, Tooltip } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
 type ProfileIconProps = {
@@ -8,13 +8,17 @@ type ProfileIconProps = {
 };
 
 const ProfileIcon = ({ name, path, children }: ProfileIconProps) => {
-  const { colorMode } = useColorMode();
-  const theme = useTheme();
   return (
     <Tooltip
       label={name}
-      backgroundColor={colorMode === 'dark' ? theme.colors.gray[700] : theme.colors.white[900]}
-      color={colorMode === 'dark' ? theme.colors.white[900] : theme.colors.gray[200]}
+      _dark={{
+        backgroundColor: 'gray.700',
+        color: 'white.900'
+      }}
+      _light={{
+        backgroundColor: 'white.900',
+        color: 'gray.200'
+      }}
     >
       <IconButton aria-label={name} backgroundColor="inherit" as="a" href={path} target="_blank">
         {children}

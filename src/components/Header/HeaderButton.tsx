@@ -1,4 +1,4 @@
-import { IconButton, useColorMode } from '@chakra-ui/react';
+import { IconButton } from '@chakra-ui/react';
 import React, { ReactElement } from 'react';
 
 type Props = {
@@ -8,14 +8,23 @@ type Props = {
 };
 
 const HeaderButton = ({ children, onClick, ...props }: Props) => {
-  const { colorMode } = useColorMode();
   return (
     <IconButton
       aria-label="Search database"
       icon={children}
-      backgroundColor={colorMode === 'light' ? 'white.900' : 'gray.400'}
+      _dark={{
+        backgroundColor: 'gray.400'
+      }}
+      _light={{
+        backgroundColor: 'white.900'
+      }}
       _hover={{
-        backgroundColor: colorMode === 'light' ? 'white.800' : 'gray.500'
+        _dark: {
+          backgroundColor: 'gray.500'
+        },
+        _light: {
+          backgroundColor: 'white.800'
+        }
       }}
       onClick={onClick}
       {...props}

@@ -34,7 +34,7 @@ const TagPage = ({ data, location, params }) => {
         marginTop="1rem"
       >
         {cardData.map((card) => {
-          return <PostCard {...card.node.frontmatter} />;
+          return <PostCard {...card.node.frontmatter} key={card.node.id} />;
         })}
       </Box>
     </RootLayout>

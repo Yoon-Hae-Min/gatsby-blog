@@ -1,4 +1,4 @@
-import { Box, Heading, Tag, Text, useColorMode } from '@chakra-ui/react';
+import { Box, Heading, Tag, Text } from '@chakra-ui/react';
 import { navigate } from 'gatsby';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
@@ -14,7 +14,6 @@ type Props = {
 };
 
 const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
-  const { colorMode } = useColorMode();
   const [isHover, setIsHover] = useState(false);
   const image = getImage(thumbnail);
   const handleMouseEnter = () => {
@@ -53,7 +52,8 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
         )}
       </Box>
       <Tag
-        color={colorMode === 'light' ? 'gray.700' : 'white.900'}
+        _dark={{ color: 'white.900', bg: 'gray.500' }}
+        _light={{ color: 'gray.700' }}
         fontSize="sm"
         my="0.4rem"
         fontWeight={600}

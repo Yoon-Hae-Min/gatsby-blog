@@ -35,6 +35,7 @@ const AllTagPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) =>
         {cardData.map((card) => {
           return (
             <PostCard
+              key={card.node.id}
               title={card.node.frontmatter?.title!}
               slug={card.node.frontmatter?.slug!}
               tag={card.node.frontmatter?.tag as keyof typeof TAG_MAP}

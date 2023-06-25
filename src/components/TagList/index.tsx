@@ -1,4 +1,4 @@
-import { Box, Text, useColorMode } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 
@@ -11,7 +11,6 @@ type TagList = {
 };
 
 const TagList = ({ pathname }: { pathname: string }) => {
-  const { colorMode } = useColorMode();
   const { allMdx } = useStaticQuery<TagList>(graphql`
     query getTagList {
       allMdx {
@@ -32,7 +31,12 @@ const TagList = ({ pathname }: { pathname: string }) => {
           marginRight="1rem"
           fontSize={['lg', 'xl', '2xl', '2xl']}
           fontWeight={700}
-          color={colorMap[colorMode](pathname === '/tag/all/')}
+          _dark={{
+            color: colorMap.dark(pathname === '/tag/all/')
+          }}
+          _light={{
+            color: colorMap.light(pathname === '/tag/all/')
+          }}
           _hover={{
             textDecoration: 'underline'
           }}
@@ -41,15 +45,20 @@ const TagList = ({ pathname }: { pathname: string }) => {
           #전체
         </Text>
       </Link>
-      {tagList.map((tag) => {
+      {tagList.map((tag, index) => {
         return (
-          <Link to={`/tag/${tag}`}>
+          <Link to={`/tag/${tag}`} key={index}>
             <Text
               display="inline-block"
               marginRight="1rem"
               fontSize={['lg', 'xl', '2xl', '2xl']}
               fontWeight={700}
-              color={colorMap[colorMode](pathname === `/tag/${tag}/`)}
+              _dark={{
+                color: colorMap.dark(pathname === `/tag/${tag}/`)
+              }}
+              _light={{
+                color: colorMap.light(pathname === `/tag/${tag}/`)
+              }}
               _hover={{
                 textDecoration: 'underline'
               }}

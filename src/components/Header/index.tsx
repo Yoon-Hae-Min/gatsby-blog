@@ -1,4 +1,4 @@
-import { Box, Progress, Spacer, useColorMode } from '@chakra-ui/react';
+import { Box, Progress, Spacer } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { HEADER_HEIGHT } from '@/constants/css';
@@ -8,7 +8,6 @@ import ToggleThemeButton from './ToggleThemeButton';
 
 const Header = ({ pathname }: { pathname: string }) => {
   const [progressValue, setProgressValue] = useState(0);
-  const { colorMode } = useColorMode();
   const handleScroll = (): void => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (scrollTop === 0) {
@@ -34,8 +33,12 @@ const Header = ({ pathname }: { pathname: string }) => {
         width="100%"
         height={HEADER_HEIGHT}
         display="block"
-        // backgroundColor="inherit"
-        backgroundColor={colorMode === 'light' ? 'white.900' : 'gray.400'}
+        _dark={{
+          backgroundColor: 'gray.400'
+        }}
+        _light={{
+          backgroundColor: 'white.900'
+        }}
         zIndex={100}
       >
         <Box p={2} display="flex" alignItems="center">

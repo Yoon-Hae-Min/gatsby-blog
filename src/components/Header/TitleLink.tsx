@@ -1,6 +1,6 @@
-import { Heading } from '@chakra-ui/react';
+import { Heading, Link } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
+import { Link as GatsbyLink } from 'gatsby';
 import React, { ReactNode } from 'react';
 
 type TitleProps = {
@@ -10,7 +10,7 @@ type TitleProps = {
 
 const TitleLink = ({ children, to }: TitleProps) => {
   return (
-    <Link to={to}>
+    <Link as={GatsbyLink} to={to}>
       <LogoHeading as="h4" size="md" letterSpacing="-0.2px" fontWeight={700} p={2}>
         {children}
       </LogoHeading>

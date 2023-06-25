@@ -8,7 +8,7 @@ import HeaderButton from './HeaderButton';
 
 const ToggleThemeButton = () => {
   const ToggleThemeIcon = useColorModeValue(MoonIcon, SunIcon);
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { toggleColorMode } = useColorMode();
   return (
     <HeaderButton onClick={toggleColorMode}>
       <ToggleThemeIcon />

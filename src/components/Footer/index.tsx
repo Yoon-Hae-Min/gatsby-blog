@@ -1,12 +1,16 @@
-import { Box, Text, useColorMode } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
 
 const Footer = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
       as="footer"
-      bg={colorMode === 'light' ? 'white.800' : 'gray.700'}
+      _dark={{
+        backgroundColor: 'gray.700'
+      }}
+      _light={{
+        backgroundColor: 'white.800'
+      }}
       display="flex"
       alignItems="center"
       justifyContent="center"
