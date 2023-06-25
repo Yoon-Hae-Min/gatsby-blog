@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, useMediaQuery } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
@@ -14,6 +14,7 @@ import { diffCurrentDate } from '@/utils/diffCurrentDate';
 const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
   const cardData = data.allMdx.edges;
   const totalPost = data.allMdx.totalCount;
+  const [isLarge768px] = useMediaQuery('(min-width: 768px)');
   return (
     <>
       <MainPageLayout pathname={location.pathname}>
@@ -30,7 +31,7 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Heading fontSize="8xl" lineHeight="140%">
+            <Heading fontSize={['4xl', '5xl', '7xl', '8xl']} lineHeight="140%">
               여러 기술들을
               <br /> 실험해보고 <br />
               저만의 생각을 녹여내는 <br />
@@ -39,7 +40,12 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
           </motion.div>
         </Flex>
         <MyInfoSlider direction="bottom-left">
-          <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'column'} gap="6rem">
+          <Flex
+            alignItems={'center'}
+            justifyContent={'center'}
+            flexDirection={'column'}
+            gap={['3rem', '4rem', '5rem', '6rem']}
+          >
             <Heading
               marginX="auto"
               marginY={'3rem'}
@@ -49,7 +55,7 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
             >
               블로그
             </Heading>
-            <Flex gap="10rem" justifyContent="center">
+            <Flex gap={['4rem', '6rem', '8rem', '10rem']} justifyContent="center">
               <SummaryCard title="총 포스트">{totalPost}개</SummaryCard>
               <SummaryCard title="블로그 시작">{diffCurrentDate(BLOG_START_DATE)}일</SummaryCard>
             </Flex>
@@ -57,7 +63,7 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
         </MyInfoSlider>
         <MyInfoSlider direction="bottom-right">
           <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'row'} gap="6rem">
-            <ProfileCard />
+            {isLarge768px && <ProfileCard />}
             <Flex flexDirection={'column'}>
               <Heading position={'relative'} margin={'auto'} size={'2xl'}>
                 FE개발자{' '}
@@ -79,11 +85,11 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
                 </Box>{' '}
                 입니다.
               </Heading>
-              <Text position={'relative'} fontSize={'xl'}>
+              <Text position={'relative'} fontSize="xl">
                 <br /> 개발자로서의 전문성과 경험을 축적하기 위해서
                 <br /> 블로그를 운영하고 있습니다. <br />
-                제 블로그에서 지식보다는 <br /> '아 이사람은 이런 경험을 해봤구나'라고 <br /> 가벼운
-                마음으로 읽어주셨으면 좋겠습니다.
+                '아 이사람은 이런 경험을 해봤구나'라고 <br /> 가벼운 마음으로 읽어주셨으면
+                좋겠습니다.
               </Text>
             </Flex>
           </Flex>

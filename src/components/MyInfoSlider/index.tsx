@@ -53,17 +53,17 @@ const MyInfoSlider = ({
           bg: colorMode === 'light' ? 'gray.100' : 'gray.500',
           content: isInView && '""',
           width: '100vw',
-          height: '58rem',
+          height: ['40rem', '40rem', '50rem', '58rem'],
           position: 'absolute',
           border: '15px solid',
-          animation: isInView && `${directionMap[direction].animation} 0.4s linear`
+          animation: isInView && `${directionMap[direction].animation} 0.3s linear`
         }}
       >
         <motion.div
           key={1}
           initial={{ y: 10, opacity: 0 }}
           animate={isInView && { y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
           {children}
         </motion.div>

@@ -110,6 +110,7 @@
     "gatsby-config.mjs",
     "./plugins/**/*",
     "./gatsby-browser.tsx",
-    "./gatsby-ssr.tsx"
+    "./gatsby-ssr.tsx",
+    "src/components/MyInfoSlider/.tsx"
   ]
 }
