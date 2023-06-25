@@ -16,13 +16,7 @@ const ProfileIcon = ({ name, path, children }: ProfileIconProps) => {
       backgroundColor={colorMode === 'dark' ? theme.colors.gray[700] : theme.colors.white[900]}
       color={colorMode === 'dark' ? theme.colors.white[900] : theme.colors.gray[200]}
     >
-      <IconButton
-        aria-label={name}
-        backgroundColor={colorMode === 'dark' ? theme.colors.gray[500] : theme.colors.white[900]}
-        as="a"
-        href={path}
-        target="_blank"
-      >
+      <IconButton aria-label={name} backgroundColor="inherit" as="a" href={path} target="_blank">
         {children}
       </IconButton>
     </Tooltip>

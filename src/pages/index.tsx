@@ -1,8 +1,10 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
 
 import MainPageLayout from '@/components/Layout/MainPageLayout';
+import MyInfoSlider from '@/components/MyInfoSlider';
 import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
 import { BLOG_START_DATE, DOMAIN } from '@/constants';
@@ -13,74 +15,47 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
   const cardData = data.allMdx.edges;
   const totalPost = data.allMdx.totalCount;
   return (
-    <MainPageLayout pathname={location.pathname}>
-      <Flex
-        alignItems="center"
-        justifyContent="center"
-        height={`calc(100vh - ${HEADER_HEIGHT})`}
-        pb="1.5rem"
-        px="1.5rem"
-      >
-        <Heading fontSize="8xl" lineHeight="140%">
-          여러 기술들을
-          <br /> 실험해보고 <br />
-          저만의 생각을 녹여내는 <br />
-          공간입니다.
-        </Heading>
-      </Flex>
-      <Box position="relative" mt="40vh">
-        <Box
-          p={5}
-          display={'flex'}
-          alignItems={'center'}
-          justifyContent={'center'}
-          flexDirection={'column'}
-          height={'100vh'}
-          _before={{
-            overflow: 'hidden',
-            transform: 'skewY(-13deg)',
-            bg: 'gray.500',
-            content: '""',
-            width: '100vw',
-            height: '58rem',
-            position: 'absolute',
-            border: '15px solid'
-          }}
+    <>
+      <MainPageLayout pathname={location.pathname}>
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          height={`calc(100vh - ${HEADER_HEIGHT})`}
+          pb="1.5rem"
+          px="1.5rem"
         >
-          <Heading
-            marginX="auto"
-            marginY={'3rem'}
-            textAlign="center"
-            position="relative"
-            size="2xl"
+          <motion.div
+            key={1}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            블로그
-          </Heading>
-          <Flex gap="10rem" justifyContent="center">
-            <SummaryCard title="총 포스트">{totalPost}개</SummaryCard>
-            <SummaryCard title="블로그 시작">{diffCurrentDate(BLOG_START_DATE)}일</SummaryCard>
+            <Heading fontSize="8xl" lineHeight="140%">
+              여러 기술들을
+              <br /> 실험해보고 <br />
+              저만의 생각을 녹여내는 <br />
+              공간입니다.
+            </Heading>
+          </motion.div>
+        </Flex>
+        <MyInfoSlider direction="bottom-left">
+          <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'column'} gap="6rem">
+            <Heading
+              marginX="auto"
+              marginY={'3rem'}
+              textAlign="center"
+              position="relative"
+              size="2xl"
+            >
+              블로그
+            </Heading>
+            <Flex gap="10rem" justifyContent="center">
+              <SummaryCard title="총 포스트">{totalPost}개</SummaryCard>
+              <SummaryCard title="블로그 시작">{diffCurrentDate(BLOG_START_DATE)}일</SummaryCard>
+            </Flex>
           </Flex>
-        </Box>
-      </Box>
-      <Box position="relative" mt="60vh">
-        <Box
-          p={5}
-          display={'flex'}
-          alignItems={'center'}
-          justifyContent={'center'}
-          flexDirection={'row'}
-          height={'122vh'}
-          _before={{
-            overflow: 'hidden',
-            transform: 'skewY(13deg)',
-            bg: 'gray.500',
-            content: '""',
-            width: '100vw',
-            height: '58rem',
-            position: 'absolute',
-            border: '15px solid'
-          }}
-        >
+        </MyInfoSlider>
+        <MyInfoSlider direction="bottom-right">
           <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'row'} gap="6rem">
             <ProfileCard />
             <Flex flexDirection={'column'}>
@@ -112,9 +87,9 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
               </Text>
             </Flex>
           </Flex>
-        </Box>
-      </Box>
-    </MainPageLayout>
+        </MyInfoSlider>
+      </MainPageLayout>
+    </>
   );
 };
 
