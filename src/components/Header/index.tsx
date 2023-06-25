@@ -1,7 +1,9 @@
 import { Box, Progress, Spacer, useColorMode } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
-import Logo from './Logo';
+import { HEADER_HEIGHT } from '@/constants/css';
+
+import TitleLink from './TitleLink';
 import ToggleThemeButton from './ToggleThemeButton';
 
 const Header = ({ pathname }: { pathname: string }) => {
@@ -30,12 +32,16 @@ const Header = ({ pathname }: { pathname: string }) => {
         position="sticky"
         top="0"
         width="100%"
+        height={HEADER_HEIGHT}
+        display="block"
+        // backgroundColor="inherit"
         backgroundColor={colorMode === 'light' ? 'white.900' : 'gray.400'}
         zIndex={100}
       >
         <Box p={2} display="flex" alignItems="center">
-          <Logo />
+          <TitleLink to="/">yoonhaemin.com</TitleLink>
           <Spacer />
+          <TitleLink to="/tag/all">Posts</TitleLink>
           <ToggleThemeButton />
         </Box>
         <Progress
@@ -43,7 +49,7 @@ const Header = ({ pathname }: { pathname: string }) => {
           size="xs"
           width="100%"
           position="sticky"
-          display={/blog/.test(pathname) ? 'block' : 'none'}
+          display={/\/blog\//.test(pathname) ? 'block' : 'none'}
         />
       </Box>
     </>

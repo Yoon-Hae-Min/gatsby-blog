@@ -13,6 +13,7 @@ const ProfileCard = ({ ...props }) => {
   const theme = useTheme();
   return (
     <Box
+      position="relative"
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -22,7 +23,7 @@ const ProfileCard = ({ ...props }) => {
     >
       <Image
         borderRadius="full"
-        boxSize={['120px', '140px', '160px', '160px']}
+        boxSize={['120px', '140px', '160px', '180px']}
         src="https://avatars.githubusercontent.com/u/49224104?v=4"
         alt="yoonhaemin profile image"
       />

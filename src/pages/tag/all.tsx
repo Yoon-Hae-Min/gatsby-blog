@@ -1,15 +1,14 @@
 import { Box, Heading } from '@chakra-ui/react';
-import { graphql } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
 
 import RootLayout from '@/components/Layout/RootLayout';
 import PostCard from '@/components/PostCard';
 import TagList from '@/components/TagList';
+import { DOMAIN } from '@/constants';
 import { TAG_MAP } from '@/constants/md';
 
-import { DOMAIN } from '../../constants';
-
-const TagPage = ({ data, location, params }) => {
+const AllTagPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
   const cardData = data.allMdx.edges;
   const totalPost = data.allMdx.totalCount;
   return (
@@ -22,7 +21,7 @@ const TagPage = ({ data, location, params }) => {
         marginTop={['2rem', '2rem', '3rem', '4rem']}
         marginBottom="4rem"
       >
-        {TAG_MAP[params.frontmatter__tag]}({totalPost})
+        전체({totalPost})
       </Heading>
       <TagList pathname={location.pathname} />
       <Box
@@ -34,21 +33,26 @@ const TagPage = ({ data, location, params }) => {
         marginTop="1rem"
       >
         {cardData.map((card) => {
-          return <PostCard {...card.node.frontmatter} />;
+          return (
+            <PostCard
+              title={card.node.frontmatter?.title!}
+              slug={card.node.frontmatter?.slug!}
+              tag={card.node.frontmatter?.tag as keyof typeof TAG_MAP}
+              createAt={card.node.frontmatter?.createAt!}
+              thumbnail={card.node.frontmatter?.thumbnail?.childImageSharp?.gatsbyImageData!}
+            />
+          );
         })}
       </Box>
     </RootLayout>
   );
 };
 
-export default TagPage;
+export default AllTagPage;
 
 export const query = graphql`
-  query MyQuery($frontmatter__tag: String) {
-    allMdx(
-      filter: { frontmatter: { tag: { eq: $frontmatter__tag } } }
-      sort: { frontmatter: { createAt: DESC } }
-    ) {
+  query BlogInfoList {
+    allMdx(sort: { frontmatter: { createAt: DESC } }) {
       edges {
         node {
           id
@@ -70,7 +74,7 @@ export const query = graphql`
   }
 `;
 
-export const Head = ({ data }) => {
+export const Head = ({ data }: PageProps<Queries.BlogInfoListQuery>) => {
   return (
     <>
       <title>FE haemin</title>

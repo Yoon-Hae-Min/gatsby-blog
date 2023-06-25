@@ -1,74 +1,101 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, useMediaQuery } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
 
-import RootLayout from '@/components/Layout/RootLayout';
-import PostCard from '@/components/PostCard';
+import MainPageLayout from '@/components/Layout/MainPageLayout';
+import MyInfoSlider from '@/components/MyInfoSlider';
 import ProfileCard from '@/components/ProfileCard';
 import SummaryCard from '@/components/SummaryCard';
-import TagList from '@/components/TagList';
 import { BLOG_START_DATE, DOMAIN } from '@/constants';
-import { TAG_MAP } from '@/constants/md';
+import { HEADER_HEIGHT } from '@/constants/css';
 import { diffCurrentDate } from '@/utils/diffCurrentDate';
 
 const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
   const cardData = data.allMdx.edges;
   const totalPost = data.allMdx.totalCount;
+  const [isLarge768px] = useMediaQuery('(min-width: 768px)');
   return (
-    <RootLayout pathname={location.pathname}>
-      <Flex
-        gap={['6rem', '5rem', '4rem', '5rem']}
-        flexDirection={['column', 'column', 'row', 'row']}
-      >
-        <Box
-          display="grid"
-          width="100%"
-          gridTemplateColumns={['1fr 1fr ', '1fr 1fr', '1fr 1fr ', '1fr 1fr']}
-          gridRowGap={['4rem', '5rem', '6rem', '6rem']}
+    <>
+      <MainPageLayout pathname={location.pathname}>
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          height={`calc(100vh - ${HEADER_HEIGHT})`}
+          pb="1.5rem"
+          px="1.5rem"
         >
-          <SummaryCard title="총 포스트">{totalPost}개</SummaryCard>
-          <SummaryCard title="방문자수">0명</SummaryCard>
-          <SummaryCard title="미정">0번</SummaryCard>
-          <SummaryCard title="블로그 시작">{diffCurrentDate(BLOG_START_DATE)}일</SummaryCard>
-        </Box>
-        <Box display="inline-block" padding={'1rem'}>
-          <ProfileCard />
-        </Box>
-      </Flex>
-      <Box>
-        <Heading
-          as="h2"
-          fontWeight={700}
-          textAlign="center"
-          size="2xl"
-          marginTop={['8rem', '8rem', '9rem', '10rem']}
-          marginBottom="2rem"
-        >
-          ALL POSTS
-        </Heading>
-        <TagList pathname={location.pathname} />
-        <Box
-          as="section"
-          display="grid"
-          gridTemplateColumns={['1fr', '1fr ', '1fr 1fr', '1fr 1fr']}
-          gap="3rem"
-          marginBottom="4rem"
-          marginTop="1rem"
-        >
-          {cardData.map((card) => {
-            return (
-              <PostCard
-                title={card.node.frontmatter?.title!}
-                slug={card.node.frontmatter?.slug!}
-                tag={card.node.frontmatter?.tag as keyof typeof TAG_MAP}
-                createAt={card.node.frontmatter?.createAt!}
-                thumbnail={card.node.frontmatter?.thumbnail?.childImageSharp?.gatsbyImageData!}
-              />
-            );
-          })}
-        </Box>
-      </Box>
-    </RootLayout>
+          <motion.div
+            key={1}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Heading fontSize={['4xl', '5xl', '7xl', '8xl']} lineHeight="140%">
+              여러 기술들을
+              <br /> 실험해보고 <br />
+              저만의 생각을 녹여내는 <br />
+              공간입니다.
+            </Heading>
+          </motion.div>
+        </Flex>
+        <MyInfoSlider direction="bottom-left">
+          <Flex
+            alignItems={'center'}
+            justifyContent={'center'}
+            flexDirection={'column'}
+            gap={['3rem', '4rem', '5rem', '6rem']}
+          >
+            <Heading
+              marginX="auto"
+              marginY={'3rem'}
+              textAlign="center"
+              position="relative"
+              size="2xl"
+            >
+              블로그
+            </Heading>
+            <Flex gap={['4rem', '6rem', '8rem', '10rem']} justifyContent="center">
+              <SummaryCard title="총 포스트">{totalPost}개</SummaryCard>
+              <SummaryCard title="블로그 시작">{diffCurrentDate(BLOG_START_DATE)}일</SummaryCard>
+            </Flex>
+          </Flex>
+        </MyInfoSlider>
+        <MyInfoSlider direction="bottom-right">
+          <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'row'} gap="6rem">
+            {isLarge768px && <ProfileCard />}
+            <Flex flexDirection={'column'}>
+              <Heading position={'relative'} margin={'auto'} size={'2xl'}>
+                FE개발자{' '}
+                <Box
+                  display="inline"
+                  textAlign="center"
+                  position="relative"
+                  _after={{
+                    content: '""',
+                    position: 'absolute',
+                    width: '100%',
+                    bottom: -1,
+                    left: 0,
+                    borderBottom: 'solid 10px',
+                    borderColor: 'green.300'
+                  }}
+                >
+                  만두피
+                </Box>{' '}
+                입니다.
+              </Heading>
+              <Text position={'relative'} fontSize="xl">
+                <br /> 개발자로서의 전문성과 경험을 축적하기 위해서
+                <br /> 블로그를 운영하고 있습니다. <br />
+                '아 이사람은 이런 경험을 해봤구나'라고 <br /> 가벼운 마음으로 읽어주셨으면
+                좋겠습니다.
+              </Text>
+            </Flex>
+          </Flex>
+        </MyInfoSlider>
+      </MainPageLayout>
+    </>
   );
 };
 

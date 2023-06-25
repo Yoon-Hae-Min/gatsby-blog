@@ -8,12 +8,19 @@ type Props = {
 
 const SummaryCard = ({ title, children }: Props) => {
   return (
-    <Box padding={5} display="flex" alignItems="center" flexDirection="column">
+    <Box
+      padding={5}
+      display="flex"
+      alignItems="center"
+      flexDirection="column"
+      marginBottom={'3rem'}
+    >
       <Heading
         size="lg"
         textAlign="center"
         width="100%"
         fontWeight="600"
+        position="relative"
         fontSize={['md', 'xl', 'xl', '2xl']}
       >
         {title}

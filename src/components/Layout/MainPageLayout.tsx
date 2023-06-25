@@ -4,11 +4,11 @@ import React, { ReactNode } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 
-const RootLayout = ({ pathname, children }: { pathname: string; children: ReactNode }) => {
+const MainPageLayout = ({ pathname, children }: { pathname: string; children: ReactNode }) => {
   return (
     <>
       <Header pathname={pathname} />
-      <Box as="main" margin="auto" maxWidth="1160px" minHeight="100vh" p="0.8rem">
+      <Box as="main" overflowX="hidden">
         {children}
       </Box>
       <Footer />
@@ -16,4 +16,4 @@ const RootLayout = ({ pathname, children }: { pathname: string; children: ReactN
   );
 };
 
-export default RootLayout;
+export default MainPageLayout;
