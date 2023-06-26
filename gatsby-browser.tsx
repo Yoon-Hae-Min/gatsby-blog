@@ -3,6 +3,8 @@ import { WrapPageElementBrowserArgs } from 'gatsby';
 import React from 'react';
 
 require('prismjs/themes/prism-tomorrow.css');
+import '@/styles/font.css';
+
 import theme from '@/@chakra-ui/gatsby-plugin/theme';
 
 export const wrapRootElement = ({ element }: WrapPageElementBrowserArgs) => {
