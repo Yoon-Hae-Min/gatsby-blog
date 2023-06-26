@@ -30,6 +30,7 @@ const config = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-image',
     'gatsby-plugin-advanced-sitemap',
+    'gatsby-plugin-webpack-bundle-analyser-v2',
     {
       resolve: 'gatsby-plugin-typescript',
       options: {
