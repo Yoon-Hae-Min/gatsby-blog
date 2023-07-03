@@ -6,6 +6,7 @@ import React from 'react';
 import Comment from '../../components/Comment';
 import RootLayout from '../../components/Layout/RootLayout';
 import MarkDownProvider from '../../components/MarkDownProvider';
+import TableOfContents from '../../components/TableOfContents';
 import { DOMAIN } from '../../constants';
 import { TAG_MAP } from '../../constants/md';
 
@@ -14,30 +15,33 @@ const PostDetailPage = ({ data, children, location }) => {
 
   return (
     <RootLayout pathname={location.pathname}>
-      <Box as="section" maxWidth="60rem" margin="auto">
-        <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
-          <Tag
-            _light={{
-              color: 'gray.700'
-            }}
-            _dark={{
-              color: 'white.900',
-              backgroundColor: 'gray.500'
-            }}
-            size="lg"
-          >
-            {TAG_MAP[metaTags.tag]}
-          </Tag>
-          <Heading size="2xl" fontWeight={700} pt={2}>
-            {metaTags.title}
-          </Heading>
-          <Text as="time">{metaTags.createAt}</Text>
-        </Box>
-        <Box as="article">
-          <MarkDownProvider>{children}</MarkDownProvider>
-        </Box>
-        <Box as="footer">
-          <Comment />
+      <Box position="relative">
+        <TableOfContents tableOfContents={data.mdx.tableOfContents} />
+        <Box as="section" maxWidth="60rem" margin="auto">
+          <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
+            <Tag
+              _light={{
+                color: 'gray.700'
+              }}
+              _dark={{
+                color: 'white.900',
+                backgroundColor: 'gray.500'
+              }}
+              size="lg"
+            >
+              {TAG_MAP[metaTags.tag]}
+            </Tag>
+            <Heading size="2xl" fontWeight={700} pt={2}>
+              {metaTags.title}
+            </Heading>
+            <Text as="time">{metaTags.createAt}</Text>
+          </Box>
+          <Box as="article">
+            <MarkDownProvider>{children}</MarkDownProvider>
+          </Box>
+          <Box as="footer">
+            <Comment />
+          </Box>
         </Box>
       </Box>
     </RootLayout>

@@ -18,7 +18,15 @@ const components = {
   h4: (props: HeadingProps) => <Heading size="md" mt={'3rem'} mb={'1.5rem'} {...props} />,
   h5: (props: HeadingProps) => <Heading size="sm" mt={'3rem'} mb={'1.5rem'} {...props} />,
   h6: (props: HeadingProps) => <Heading {...props} />,
-  a: (props: LinkProps) => <Link color="blue.300" fontWeight={500} {...props} />,
+  a: (props: LinkProps) => (
+    <Link
+      color="blue.300"
+      fontWeight={500}
+      _dark={{ fill: 'white.900' }}
+      _light={{ fill: 'gray.400' }}
+      {...props}
+    />
+  ),
   p: (props: TextProps) => <Text as="p" lineHeight="1.9" fontSize="1.2rem" {...props} />,
   ul: (props: Object) => (
     <Box
