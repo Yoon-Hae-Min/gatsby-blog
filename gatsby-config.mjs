@@ -159,6 +159,17 @@ const config = {
          */
         isUsingColorMode: true
       }
+    },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        custom: {
+          families: ['Pretendard'],
+          urls: [
+            'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css'
+          ]
+        }
+      }
     }
   ]
 };

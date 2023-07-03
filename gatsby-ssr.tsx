@@ -15,40 +15,6 @@ export const wrapRootElement = ({ element }: WrapPageElementBrowserArgs) => {
   );
 };
 
-export const onRenderBody = ({ setHtmlAttributes, setHeadComponents }: RenderBodyArgs) => {
+export const onRenderBody = ({ setHtmlAttributes }: RenderBodyArgs) => {
   setHtmlAttributes({ lang: `kr` });
-  setHeadComponents([
-    <link
-      rel="preload"
-      href="/fonts/Pretendard-Bold.woff2"
-      as="font"
-      type="font/woff2"
-      crossOrigin="anonymous"
-      key="PretendardBold"
-    />,
-    <link
-      rel="preload"
-      href="/fonts/Pretendard-SemiBold.woff2"
-      as="font"
-      type="font/woff2"
-      crossOrigin="anonymous"
-      key="PretendardSemiBold"
-    />,
-    <link
-      rel="preload"
-      href="/fonts/Pretendard-Medium.woff2"
-      as="font"
-      type="font/woff2"
-      crossOrigin="anonymous"
-      key="PretendardMedium"
-    />,
-    <link
-      rel="preload"
-      href="/fonts/Pretendard-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossOrigin="anonymous"
-      key="PretendardRegular"
-    />
-  ]);
 };
