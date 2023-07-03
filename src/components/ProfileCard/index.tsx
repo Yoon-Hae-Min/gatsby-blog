@@ -67,10 +67,10 @@ const ProfileCard = ({ ...props }) => {
             }}
           />
         </ProfileIcon>
-        <ProfileIcon name="Resume" path="">
+        <ProfileIcon name="준비중" path="/">
           <ResumeIcon
             style={{
-              fill: colorMode === 'light' ? theme.colors.gray[700] : theme.colors.white[900]
+              fill: colorMode === 'light' ? theme.colors.gray[200] : theme.colors.gray[200]
             }}
           />
         </ProfileIcon>

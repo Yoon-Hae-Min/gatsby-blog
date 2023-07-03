@@ -17,7 +17,7 @@ const ProfileIcon = ({ name, path, children }: ProfileIconProps) => {
       }}
       _light={{
         backgroundColor: 'white.900',
-        color: 'gray.200'
+        color: 'gray.600'
       }}
     >
       <IconButton aria-label={name} backgroundColor="inherit" as="a" href={path} target="_blank">
