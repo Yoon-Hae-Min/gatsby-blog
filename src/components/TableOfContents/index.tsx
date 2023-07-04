@@ -1,32 +1,40 @@
 import { Box, Heading, Link } from '@chakra-ui/react';
 import React from 'react';
 
-interface TableOfContentsProps {
-  tableOfContents: {
-    items: {
-      url: string;
-      title: string;
-    }[];
-  };
-}
+type TableOfContentsItemType = {
+  url: string;
+  title: string;
+  items?: TableOfContentsItemType[];
+};
 
-const TableOfContents = ({ tableOfContents }: TableOfContentsProps) => {
+type TableOfContentsType = {
+  items: TableOfContentsItemType[];
+};
+
+const TableOfContents = ({ tableOfContents }: { tableOfContents: TableOfContentsType }) => {
   return (
     <Box as="aside" position="absolute" right={0}>
-      <Box as="nav" position="fixed" borderLeft="1px dashed " p="1rem" paddingLeft="3rem">
+      <Box as="nav" position="fixed" borderLeft="1px dashed " p="1rem" paddingLeft="1.8rem">
         <Heading size="md" mb="1rem">
           Contents
         </Heading>
-        <Box as="ol">
-          {tableOfContents.items.map((i) => (
-            <Box as="li" key={i.url} lineHeight="2.1rem">
-              <Link href={i.url} key={i.url}>
-                {i.title}
-              </Link>
-            </Box>
-          ))}
-        </Box>
+        <TableOfContent items={tableOfContents.items} />
       </Box>
+    </Box>
+  );
+};
+
+const TableOfContent = ({ items }: { items: TableOfContentsItemType[] }) => {
+  return (
+    <Box as="ol" listStyleType="none" paddingLeft={`${1.2}rem`}>
+      {items.map((i) => (
+        <>
+          <Box as="li" key={i.url} lineHeight="2.1rem">
+            <Link href={i.url}>{i.title}</Link>
+          </Box>
+          {i.items && <TableOfContent items={i.items} key={i.url} />}
+        </>
+      ))}
     </Box>
   );
 };

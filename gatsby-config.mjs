@@ -98,7 +98,10 @@ const config = {
             }
           },
           {
-            resolve: `gatsby-remark-autolink-headers`
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: `150`
+            }
           },
           {
             resolve: `gatsby-remark-prismjs`,
