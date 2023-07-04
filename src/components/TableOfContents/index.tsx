@@ -12,6 +12,7 @@ type TableOfContentsType = {
 };
 
 const TableOfContents = ({ tableOfContents }: { tableOfContents: TableOfContentsType }) => {
+  console.log(tableOfContents);
   return (
     <Box as="aside" position="absolute" right={0}>
       <Box as="nav" position="fixed" borderLeft="1px dashed " p="1rem" paddingLeft="1.8rem">
@@ -25,15 +26,14 @@ const TableOfContents = ({ tableOfContents }: { tableOfContents: TableOfContents
 };
 
 const TableOfContent = ({ items }: { items: TableOfContentsItemType[] }) => {
+  console.log(items);
   return (
     <Box as="ol" listStyleType="none" paddingLeft={`${1.2}rem`}>
-      {items.map((i) => (
-        <>
-          <Box as="li" key={i.url} lineHeight="2.1rem">
-            <Link href={i.url}>{i.title}</Link>
-          </Box>
-          {i.items && <TableOfContent items={i.items} key={i.url} />}
-        </>
+      {items.map((i, index) => (
+        <Box as="li" key={i.url} lineHeight="2.1rem">
+          <Link href={i.url}>{i.title}</Link>
+          {i.items && <TableOfContent items={i.items} key={`nested-${index}`} />}
+        </Box>
       ))}
     </Box>
   );

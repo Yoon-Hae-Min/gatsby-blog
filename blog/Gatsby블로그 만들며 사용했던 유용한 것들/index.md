@@ -7,20 +7,20 @@ thumbnail: './thumbnail.png'
 description: '좋은 gatsby 플러그인과 블로그를 만들기 위한 툴이 너무 많다!!'
 ---
 
-## 구글 서치 콘솔
+# 구글 서치 콘솔
 
 내가 만든 사이트를 구글 검색엔진에 등록해서 검색되게끔 도와주는 서비스이다. 또한 등록과 더불어서 사용자가 구글 검색으로 얼마만큼 노출이 되었고 얼마만큼 클릭하였는지 통계도 보여준다.
 특히 페이지에서 모바일 경험 측정과 색인 생성을 통해서 알림도 주는 기능이 있다.
 
 **[https://search.google.com/search-console?hl=ko](https://search.google.com/search-console?hl=ko)**
 
-## 네이버 서치 어드바이저
+# 네이버 서치 어드바이저
 
 내가 만든 사이트를 네이버 검색 엔진에 등록해서 검색되게끔 도와주는 서비스이다. 또한 URL 진단으로 사이트 관리에서 필요한 진단 리포트를 제공해 주기도 한다. 개인적으로 리포트 관련 항목은 구글 서치가 기능 및 분석을 더 잘해주는 것 같다.
 
 https://searchadvisor.naver.com/
 
-## 다음 검색 등록
+# 다음 검색 등록
 
 내가 만든 사이트를 네이버 검색 엔진에 등록해서 검색되게끔 도와주는 서비스이다. 네이버나 구글처럼 따로 리포트 기능은 없고 등록만 해준다.
 
@@ -30,7 +30,7 @@ https://register.search.daum.net/index.daum
 
 Gatsby를 이용해 블로그를 구성할 때 많은 플러그인과 툴을 사용했었다. 이러한 플러그인 사용 덕분에 편리하게 기능을 만들 수 있었다.
 
-### 1. `gatsby-plugin-google-gtag`
+## 1. `gatsby-plugin-google-gtag`
 
 기존 티스토리 블로그에서는 방문자 집계 및 조회수와 분석까지 다 해주었지만, 블로그를 직접 만들려면 방문자 수 및 조회수와 분석을 직접 연결해야 한다.
 
@@ -47,13 +47,13 @@ Gatsby를 이용해 블로그를 구성할 때 많은 플러그인과 툴을 사
 
 다음과 같이 설정하면 구글 애널리틱스가 내 서비스에 대해서 집계를 하기 시작한다.
 
-## 3. `gatsby-plugin-advanced-sitemap`
+## 2. `gatsby-plugin-advanced-sitemap`
 
 ![](./1.png)
 
 기존의 XML sitemap은 내 sitemap이 적용이 제대로 되었는지 보기 힘들다 하지만 `gatsby-plugin-advanced-sitemap`을 이용한다면 내 사이트의 sitemap이 등록이 잘되어있는지 깔끔하게 보여준다. sitemap이 이상 없는지 확인할 때 좋다.
 
-## 4. `gatsby-plugin-mdx`
+## 3. `gatsby-plugin-mdx`
 
 mdx, md파일에 블로그 글을 작성하고 코드상에 해당 파일의 정보를 가져오려면 사용해야 하는 플러그인이다. CommonMarkdown을 지원하고 있다.
 
@@ -167,7 +167,7 @@ const MarkDownProvider = ({ children }: { children: ReactNode }) => {
 export default MarkDownProvider;
 ```
 
-## 4-1 `remark-gfm`
+### 3-1 `remark-gfm`
 
 ```jsx
 resolve: 'gatsby-plugin-mdx',
@@ -185,7 +185,7 @@ https://github.com/gatsbyjs/gatsby/blob/master/examples/using-mdx/gatsby-config.
 
 다만 이 라이브러리는 module 파일로 정의해야 하기 때문에 `gatsby-config.js` 파일을 `gatsby-config.mjs`로 수정해야 한다.
 
-## 4-2 `gatsby-remark-gifs` `gatsby-remark-images`
+### 3-2 `gatsby-remark-gifs` `gatsby-remark-images`
 
 md파일에 이미지와 gif 파일을 지원하기 위해서 추가하였다. gatsbyRemarkPlugins 옵션을 이용해서 gtsby-remark-\* 플러그인을 넣을 수 있다.
 
@@ -212,7 +212,7 @@ md파일에 이미지와 gif 파일을 지원하기 위해서 추가하였다. g
 }
 ```
 
-## 4-3 `gatsby-remark-prismjs`
+### 3-3 `gatsby-remark-prismjs`
 
 md파일에 있는 코드의 하이라이팅을 위해서 사용하였다.
 

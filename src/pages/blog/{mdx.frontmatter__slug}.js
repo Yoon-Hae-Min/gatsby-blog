@@ -12,11 +12,12 @@ import { TAG_MAP } from '../../constants/md';
 
 const PostDetailPage = ({ data, children, location }) => {
   const metaTags = data.mdx.frontmatter;
-
+  const tableOfContents = data.mdx.tableOfContents;
+  console.log(tableOfContents);
   return (
     <RootLayout pathname={location.pathname}>
       <Box position="relative">
-        <TableOfContents tableOfContents={data.mdx.tableOfContents} />
+        <TableOfContents tableOfContents={tableOfContents} />
         <Box as="section" maxWidth="60rem" margin="auto">
           <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
             <Tag

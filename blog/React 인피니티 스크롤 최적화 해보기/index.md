@@ -4,21 +4,21 @@ slug: 'optimize-infinity-scroll'
 tag: 'technical-experience'
 createAt: '2023-01-25'
 thumbnail: './thumbnail.png'
-desciption: 'react-virtualized를 이용한 인피니티 스크롤 최적화'
+description: 'react-virtualized를 이용한 인피니티 스크롤 최적화'
 ---
 
 ## 진행 동기
 
 Breaking프로젝트를 진행하면서 성능과 코드 구조에 대해서 아쉬운 부분이 남았고 이에 시간이 없어서 수정하지 못한 2가지를 리펙토링 프로젝트를 통해 수정해 보고자 하였다 첫 리펙토링은 인피니티 스크롤을 리펙토링이다. [(인피니티 스크롤 최적화하기 PR)](https://github.com/Yoon-Hae-Min/breaking-frontend/pull/1)
 
-#### 리펙토링 시리즈
+### 리펙토링 시리즈
 
 1.  **⭐ 인피니티 스크롤에서 데이터가 많아지면 프레임이 떨어짐 (현재 글) ⭐**
 2.  [마이페이지 팔로우 팔로워 modal창에서 데이터 동기화 방법](https://throwfe.tistory.com/19)
 
 ### 기존 인피니티 스크롤 전략
 
-기존에 인피니티 스크롤 방법은 IntersectionObserver 객체를 이용해 인피니티 스크롤이 필요한 부분에 div 태그를 만들고 해당 태그에 교차시에 다음 페이지 fetch를 하도록 설정하였다
+기존에 인피니티 스크롤 방법은 IntersectionObserver 객체를 이용해 인피니티 스크롤이 필요한 부분에 div 태그를 만들고 해당 태그에 교차시에 다음 페이지 fetch를 하도록 설정하였다.
 
 ![해당 부분에 div태그를 만들어서 교차시에 데이터를 불러올수 있도록 하였다.](./1.png)
 
@@ -53,7 +53,7 @@ const useInfiniteScroll = (data, FetchNextPage) => {
 export default useInfiniteScroll;
 ```
 
-가상의 div태그에 줄 observer를 생성후 ref값을 return 해 그 값을 가상의 div태그에 넣어 교차 시에 FetchNextPage가 실행되도록 hook을 구성하였다
+가상의 div태그에 줄 observer를 생성후 ref값을 return 해 그 값을 가상의 div태그에 넣어 교차 시에 FetchNextPage가 실행되도록 hook을 구성하였다.
 
 ### 문제점 발생
 
@@ -61,11 +61,12 @@ export default useInfiniteScroll;
 
 ![무한히 추가되는 div태그들…..](./2.png)
 
-### 새로운 전략 
+## 새로운 전략 
 
 이를 해결하기 위해서 생각해 낸것이 ‘사용자에게 보이는 부분만 element를 만들고 보이지 않는 부분은 DOM에서 element를 제거하는 형식으로 만들자’였다 하지만 그냥 DOM에서 제거를 하게 되면 제거된 DOM의 크기만큼 화면의 높이가 줄어들게 되어서 부자연스러운 결과를 낳게 된다. 따라서 추가적인 로직이 필수로 동반되어야 했고 이 방법을 [오늘의 집 페이지](https://ohou.se/productions/feed?query=%EC%9D%98%EC%9E%90&input_source=integrated&search_affect_type=Typing)에서 사용하고 있었다.
 
 ![padding-top과 padding-bottom을 이용해서 관리](./3.png)
+
 사용자가 보이는 view의 일정 부분만 dom에 남겨두고 padding-top을 이용해 사라진 부분만큼 공백을 만들어서 dom을 관리하고 있는걸 볼 수 있다.
 
 이러면 사용자 입장에서는 데이터를 끊킴없이 불러오면서 볼 수 있는 장점이 있고 데이터를 아무리 불러와도 dom자체에는 할당된 양만큼의 div 태그가 있기 때문에 프레임 드롭이 일어나지 않는다. 나도 이 방법을 토대로 똑같이 문제를 해결 해 보고자 하였다.
@@ -116,11 +117,11 @@ export default useInfiniteScroll;
 
 받아온 데이터 중 보여줄 3페이지만 slice 해서 보여주고 사라진 DOM의 크기만큼 Padding을 주는 로직을 추가해서 해결하려고 했다. 하지만 slice로 인해 생기는 문제점들이 있었다.
 
-> 1\. 데이터에 관한 연산이 api 선언문이 아닌 컴포넌트에서 직접 한다는 점.
+> 1. 데이터에 관한 연산이 api 선언문이 아닌 컴포넌트에서 직접 한다는 점.
 >
-> 2\. modal창에 일정 크기의 padding이 들어갈 시 overflow css가 무시되는 현상
+> 2. modal창에 일정 크기의 padding이 들어갈 시 overflow css가 무시되는 현상
 >
-> 3\. 스크롤을 위로 올릴시 기존 데이터를 받아오는 로직이 추가로 있어야 함
+> 3. 스크롤을 위로 올릴시 기존 데이터를 받아오는 로직이 추가로 있어야 함
 
 이는 기능을 하나 추가할 때마다 코드의 복잡도를 매우 올리기 때문에 리펙토링이나 구현 과정에서 큰 난이도를 요구하였다.
 
@@ -209,7 +210,7 @@ const useMainFeedOption = (sort, option) => {
 };
 ```
 
-### react-virtualized로 마이그레이션
+#### react-virtualized로 마이그레이션
 
 InfiniteGridWrapper라는 컴포넌트를 생성해 InfiniteLoader와 Grid 컴포넌트를 합쳤다.
 
@@ -353,7 +354,7 @@ InfiniteGridWrapper.propTypes = {
 export default InfiniteGridWrapper;
 ```
 
-## Main에 InfiniteGridWrapper 적용하기
+#### Main에 InfiniteGridWrapper 적용하기
 
 컴포넌트 호출부
 
@@ -377,11 +378,11 @@ export default InfiniteGridWrapper;
 
 다음과 같이 적용해 주면 잘 동작하는 것을 확인할 수 있다.
 
-## Profile follower following modal에 InfiniteGridWrapper 적용하기
+#### Profile follower following modal에 InfiniteGridWrapper 적용하기
 
 둘이 공통되는 점이 많은 컴포넌트여서 공통되는 부분을 컴포넌트로 추출하였다.
 
-### 컴포넌트 선언부
+#### 컴포넌트 선언부
 
 props types 설명
 
@@ -510,7 +511,7 @@ FollowModal.propTypes = {
 export default FollowModal;
 ```
 
-### 컴포넌트 호출부
+#### 컴포넌트 호출부
 
 ```jsx
 import useFollowerList from 'pages/Profile/Profile/hooks/queries/useFollowerList';
@@ -559,21 +560,21 @@ ProfileFollowModal.propTypes = {
 export default ProfileFollowModal;
 ```
 
-### 진짜 행복한 결말
+## 진짜 행복한 결말
 
 사실 처음에 리펙토링 기간을 이틀로 잡았는데 사이사이 이런 삽질 때문에 4일이 걸려버렸다 React에서 추천하는 라이브러리인데 너무 관리가 안된(?) 느낌이 나서 복잡한 기능이 들어가면 그냥 직접 구현하는 게 나을 것 같다. 지금처럼 한가한 시간이 남는다면 다음번에는 직접 windowing을 구현해 보는 것도 좋을 것 같다.
 
-### 후기
+## 후기
 
-1\. 진짜 타입스크립트 없으면 못살겠다. ts를 쓰다가 js로 넘어오니 코드를 실행할때마다 런타임 에러들이 쭉쭉보인다.
+1. 진짜 타입스크립트 없으면 못살겠다. ts를 쓰다가 js로 넘어오니 코드를 실행할때마다 런타임 에러들이 쭉쭉보인다.
 
-2\. 6개월전의 나 생각보다 코드를 못짰구나... 구조화가 안된게 눈에 보이지만 그걸 다 해결하기는 실제로 서비스를 하지 않아서 그런지 손이안간다.
+2. 6개월전의 나 생각보다 코드를 못짰구나... 구조화가 안된게 눈에 보이지만 그걸 다 해결하기는 실제로 서비스를 하지 않아서 그런지 손이안간다.
 
-3\. 확실히 개발은 동기 부여가 필요하다. 유저가 있거나 프로젝트가 진행중이거나 해야 좀더 깊게 관심있이 하는것같다 리펙토링을 하면서도 에이 어짜피 안쓰는것인데 라는 생각이 계속 들다보니 더 잘할수 있는데 자꾸 타협을 하는것 같다.
+3. 확실히 개발은 동기 부여가 필요하다. 유저가 있거나 프로젝트가 진행중이거나 해야 좀더 깊게 관심있이 하는것같다 리펙토링을 하면서도 에이 어짜피 안쓰는것인데 라는 생각이 계속 들다보니 더 잘할수 있는데 자꾸 타협을 하는것 같다.
 
-4\. 그래도 직접 성능을 최적화했다는 점에서 나름 성장한것이 아닌가?!
+4. 그래도 직접 성능을 최적화했다는 점에서 나름 성장한것이 아닌가?!
 
-5\. 인피니티 스크롤은 너무 고려할게 많다 페이지네이션 좋...아....
+5. 인피니티 스크롤은 너무 고려할게 많다 페이지네이션 좋...아....
 
 ### PS. 마이그레이션을 포기하고 4번째 시도로 바꿀 뻔했던 썰….
 
