@@ -9,15 +9,37 @@ import {
   TextProps
 } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
-import React, { ReactNode } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
+
+const HnComponent = ({
+  componentsProps,
+  ...headingProps
+}: {
+  componentsProps: HTMLAttributes<HTMLHeadingElement>;
+} & HeadingProps) => (
+  <Heading {...headingProps} position="relative">
+    <Box position="absolute" top="-5rem" id={componentsProps.id}></Box>
+    {componentsProps.children}
+  </Heading>
+);
 
 const components = {
-  h1: (props: HeadingProps) => <Heading size="2xl" mt={'3rem'} mb={'1.5rem'} {...props} />,
-  h2: (props: HeadingProps) => <Heading size="xl" mt={'3rem'} mb={'1.5rem'} {...props} />,
-  h3: (props: HeadingProps) => <Heading size="lg" mt={'3rem'} mb={'1.5rem'} {...props} />,
-  h4: (props: HeadingProps) => <Heading size="md" mt={'3rem'} mb={'1.5rem'} {...props} />,
-  h5: (props: HeadingProps) => <Heading size="sm" mt={'3rem'} mb={'1.5rem'} {...props} />,
-  h6: (props: HeadingProps) => <Heading {...props} />,
+  h1: (props: HTMLAttributes<HTMLHeadingElement>) => (
+    <HnComponent componentsProps={props} size="2xl" mt={'3rem'} mb={'1.5rem'} />
+  ),
+  h2: (props: HTMLAttributes<HTMLHeadingElement>) => (
+    <HnComponent componentsProps={props} size="xl" mt={'3rem'} mb={'1.5rem'} />
+  ),
+  h3: (props: HTMLAttributes<HTMLHeadingElement>) => (
+    <HnComponent componentsProps={props} size="lg" mt={'3rem'} mb={'1.5rem'} />
+  ),
+  h4: (props: HTMLAttributes<HTMLHeadingElement>) => (
+    <HnComponent componentsProps={props} size="md" mt={'3rem'} mb={'1.5rem'} />
+  ),
+  h5: (props: HTMLAttributes<HTMLHeadingElement>) => (
+    <HnComponent componentsProps={props} size="sm" mt={'3rem'} mb={'1.5rem'} />
+  ),
+  h6: (props: HTMLAttributes<HTMLHeadingElement>) => <HnComponent componentsProps={props} />,
   a: (props: LinkProps) => (
     <Link
       color="blue.300"
