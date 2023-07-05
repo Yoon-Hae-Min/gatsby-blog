@@ -32,12 +32,12 @@ const PostDetailPage = ({ data, children, location }) => {
             >
               {TAG_MAP[metaTags.tag]}
             </Tag>
-            <Heading size="2xl" fontWeight={700} pt={2}>
+            <Heading size="2xl" fontWeight={700} pt={2} wordBreak="keep-all">
               {metaTags.title}
             </Heading>
             <Text as="time">{metaTags.createAt}</Text>
           </Box>
-          <Box as="article">
+          <Box as="article" p={2}>
             <MarkDownProvider>{children}</MarkDownProvider>
           </Box>
           <Box as="footer">
