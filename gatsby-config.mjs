@@ -88,6 +88,9 @@ const config = {
           remarkPlugins: [remarkGfm]
         },
         gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-autolink-headers`
+          },
           'gatsby-remark-gifs',
           {
             resolve: `gatsby-remark-images`,
@@ -96,9 +99,6 @@ const config = {
               wrapperStyle: 'margin: 1.8rem auto;',
               showCaptions: true
             }
-          },
-          {
-            resolve: `gatsby-remark-autolink-headers`
           },
           {
             resolve: `gatsby-remark-prismjs`,

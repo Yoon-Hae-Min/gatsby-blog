@@ -1,4 +1,4 @@
-import { Box, Heading, Tag, Text } from '@chakra-ui/react';
+import { Box, Heading, Tag, Text, useMediaQuery } from '@chakra-ui/react';
 import { graphql } from 'gatsby';
 import { getSrc } from 'gatsby-plugin-image';
 import React from 'react';
@@ -13,12 +13,12 @@ import { TAG_MAP } from '../../constants/md';
 const PostDetailPage = ({ data, children, location }) => {
   const metaTags = data.mdx.frontmatter;
   const tableOfContents = data.mdx.tableOfContents;
-  console.log(tableOfContents);
+  const [isLarge1680px] = useMediaQuery('(min-width: 1680px)');
   return (
     <RootLayout pathname={location.pathname}>
       <Box position="relative">
-        <TableOfContents tableOfContents={tableOfContents} />
-        <Box as="section" maxWidth="60rem" margin="auto">
+        {isLarge1680px && <TableOfContents tableOfContents={tableOfContents} />}
+        <Box as="section" maxWidth="50rem" margin="auto">
           <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
             <Tag
               _light={{

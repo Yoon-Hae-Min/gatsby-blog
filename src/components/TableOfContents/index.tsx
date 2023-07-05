@@ -12,9 +12,8 @@ type TableOfContentsType = {
 };
 
 const TableOfContents = ({ tableOfContents }: { tableOfContents: TableOfContentsType }) => {
-  console.log(tableOfContents);
   return (
-    <Box as="aside" position="absolute" right={0}>
+    <Box as="aside" position="absolute" right={20}>
       <Box as="nav" position="fixed" borderLeft="1px dashed " p="1rem" paddingLeft="1.8rem">
         <Heading size="md" mb="1rem">
           Contents
@@ -26,7 +25,6 @@ const TableOfContents = ({ tableOfContents }: { tableOfContents: TableOfContents
 };
 
 const TableOfContent = ({ items }: { items: TableOfContentsItemType[] }) => {
-  console.log(items);
   return (
     <Box as="ol" listStyleType="none" paddingLeft={`${1.2}rem`}>
       {items.map((i, index) => (
