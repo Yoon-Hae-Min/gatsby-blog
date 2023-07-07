@@ -29,9 +29,8 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
     navigate(`/tag/${tag}`);
   };
   return (
-    <Box as="article" margin="auto" width="100%">
+    <Box as="article" width="100%">
       <Box
-        height="100%"
         width="100%"
         overflow="hidden"
         borderRadius="0.3rem"
@@ -39,17 +38,19 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {image && (
-          <GatsbyImage
-            image={image}
-            alt="thumbnail"
-            style={{
-              cursor: 'pointer',
-              transition: 'transform 0.2s ease',
-              transform: isHover ? 'scale(1.1)' : 'scale(1)'
-            }}
-          />
-        )}
+        <Box>
+          {image && (
+            <GatsbyImage
+              image={image}
+              alt="thumbnail"
+              style={{
+                cursor: 'pointer',
+                transition: 'transform 0.2s ease',
+                transform: isHover ? 'scale(1.1)' : 'scale(1)'
+              }}
+            />
+          )}
+        </Box>
       </Box>
       <Tag
         _dark={{ color: 'white.900', bg: 'gray.500' }}
