@@ -64,7 +64,7 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
         {tag ? TAG_MAP[tag] : '미분류'}
       </Tag>
       <Heading
-        as="h4"
+        as="h3"
         fontSize="2xl"
         fontWeight={700}
         cursor="pointer"
