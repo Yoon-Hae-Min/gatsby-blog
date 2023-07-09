@@ -13,7 +13,12 @@ type TableOfContentsType = {
 
 const TableOfContents = ({ tableOfContents }: { tableOfContents: TableOfContentsType }) => {
   return (
-    <Box as="aside" position="absolute" right={20}>
+    <Box
+      as="aside"
+      position="absolute"
+      right={20}
+      display={['none', 'none', 'none', 'none', 'none', 'block']}
+    >
       <Box as="nav" position="fixed" borderLeft="1px dashed " p="1rem" paddingLeft="1.8rem">
         <Heading size="md" mb="1rem">
           Contents
