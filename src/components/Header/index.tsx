@@ -33,12 +33,7 @@ const Header = ({ pathname }: { pathname: string }) => {
         width="100%"
         height={HEADER_HEIGHT}
         display="block"
-        _dark={{
-          backgroundColor: 'gray.400'
-        }}
-        _light={{
-          backgroundColor: 'white.900'
-        }}
+        backdropFilter="blur(0.8rem)"
         zIndex={100}
       >
         <Box p={2} display="flex" alignItems="center">
