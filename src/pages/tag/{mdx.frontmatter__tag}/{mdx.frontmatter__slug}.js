@@ -83,6 +83,11 @@ export const query = graphql`
           slug
           description
           createAt
+          thumbnail {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
         }
       }
     }
