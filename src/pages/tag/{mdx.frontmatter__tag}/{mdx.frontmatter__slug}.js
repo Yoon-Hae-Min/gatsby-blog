@@ -3,16 +3,20 @@ import { graphql } from 'gatsby';
 import { getSrc } from 'gatsby-plugin-image';
 import React from 'react';
 
-import Comment from '../../components/Comment';
-import RootLayout from '../../components/Layout/RootLayout';
-import MarkDownProvider from '../../components/MarkDownProvider';
-import TableOfContents from '../../components/TableOfContents';
-import { DOMAIN } from '../../constants';
-import { TAG_MAP } from '../../constants/md';
+import Comment from '../../../components/Comment';
+import RootLayout from '../../../components/Layout/RootLayout';
+import MarkDownProvider from '../../../components/MarkDownProvider';
+import RecommendPosts from '../../../components/RecommendPosts';
+import TableOfContents from '../../../components/TableOfContents';
+import { DOMAIN } from '../../../constants';
+import { TAG_MAP } from '../../../constants/md';
 
 const PostDetailPage = ({ data, children, location }) => {
   const metaTags = data.mdx.frontmatter;
   const tableOfContents = data.mdx.tableOfContents;
+  const recommendPosts = data.allMdx.nodes;
+
+  console.log(recommendPosts);
   return (
     <RootLayout pathname={location.pathname}>
       <Box position="relative">
@@ -39,6 +43,7 @@ const PostDetailPage = ({ data, children, location }) => {
           <Box as="article" p={2}>
             <MarkDownProvider>{children}</MarkDownProvider>
           </Box>
+          <RecommendPosts posts={recommendPosts} />
           <Box as="footer">
             <Comment />
           </Box>
@@ -51,7 +56,7 @@ const PostDetailPage = ({ data, children, location }) => {
 export default PostDetailPage;
 
 export const query = graphql`
-  query ($id: String) {
+  query post($id: String, $frontmatter__tag: String) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title
@@ -65,6 +70,21 @@ export const query = graphql`
         }
       }
       tableOfContents
+    }
+    allMdx(
+      filter: { frontmatter: { tag: { eq: $frontmatter__tag } } }
+      limit: 4
+      sort: { frontmatter: { createAt: DESC } }
+    ) {
+      nodes {
+        frontmatter {
+          title
+          tag
+          slug
+          description
+          createAt
+        }
+      }
     }
   }
 `;

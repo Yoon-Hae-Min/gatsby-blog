@@ -23,7 +23,7 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
     setIsHover(false);
   };
   const handleEnterBlog = () => {
-    navigate(`/blog/${slug}`);
+    navigate(`/tag/${tag}/${slug}`);
   };
   const handleEnterTag = () => {
     navigate(`/tag/${tag}`);
