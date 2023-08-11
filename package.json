@@ -15,7 +15,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby clean && gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^3.1.3",
