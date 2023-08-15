@@ -1,15 +1,13 @@
-import { Box, Flex, Heading, Text, useMediaQuery } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import { graphql, PageProps } from 'gatsby';
+import { Box, Divider, Flex, Heading, Text, useMediaQuery } from '@chakra-ui/react';
+import { graphql, navigate, PageProps } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
-import MainPageLayout from '@/components/Layout/MainPageLayout';
-import MyInfoSlider from '@/components/MyInfoSlider';
+import FolderIcon from '@/assets/svg/folder.svg';
+import RootLayout from '@/components/Layout/RootLayout';
 import ProfileCard from '@/components/ProfileCard';
-import SummaryCard from '@/components/SummaryCard';
-import { BLOG_START_DATE, DOMAIN } from '@/constants';
-import { HEADER_HEIGHT } from '@/constants/css';
-import { diffCurrentDate } from '@/utils/diffCurrentDate';
+import { DOMAIN } from '@/constants';
+import { TAG_MAP } from '@/constants/md';
 
 const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
   const cardData = data.allMdx.edges;
@@ -17,84 +15,116 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
   const [isLarge768px] = useMediaQuery('(min-width: 768px)');
   return (
     <>
-      <MainPageLayout pathname={location.pathname}>
+      <RootLayout pathname={location.pathname}>
         <Flex
-          alignItems="center"
-          justifyContent="center"
-          height={`calc(100vh - ${HEADER_HEIGHT})`}
-          pb="1.5rem"
-          px="1.5rem"
+          alignItems={'center'}
+          justifyContent={'center'}
+          flexDirection={['column', 'column', 'row', 'row']}
+          gap="4rem"
+          mb="4rem"
         >
-          <motion.div
-            key={1}
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Heading fontSize={['4xl', '5xl', '7xl', '8xl']} lineHeight="140%">
-              여러 기술들을
-              <br /> 실험해보고 <br />
-              저만의 생각을 녹여내는 <br />
-              공간입니다.
+          <ProfileCard />
+          <Flex flexDirection={'column'}>
+            <Heading position={'relative'} width="100%" size={'2xl'}>
+              FE개발자{' '}
+              <Box
+                display="inline"
+                textAlign="center"
+                position="relative"
+                _after={{
+                  content: '""',
+                  position: 'absolute',
+                  width: '100%',
+                  bottom: -1,
+                  left: 0,
+                  borderBottom: 'solid 10px',
+                  borderColor: 'green.300'
+                }}
+              >
+                만두피
+              </Box>{' '}
+              입니다.
             </Heading>
-          </motion.div>
+            <Text position={'relative'} fontSize="xl">
+              <br /> 개발자로서의 전문성과 경험을 축적하기 위해서
+              <br /> 블로그를 운영하고 있습니다. <br />
+              '아 이사람은 이런 경험을 해봤구나'라고 <br /> 가벼운 마음으로 읽어주셨으면 좋겠습니다.
+            </Text>
+          </Flex>
         </Flex>
-        <MyInfoSlider direction="bottom-left">
-          <Flex
-            alignItems={'center'}
-            justifyContent={'center'}
-            flexDirection={'column'}
-            gap={['3rem', '4rem', '5rem', '6rem']}
-          >
-            <Heading
-              marginX="auto"
-              marginY={'3rem'}
-              textAlign="center"
-              position="relative"
-              size="2xl"
-            >
-              블로그
+        <Flex
+          backgroundColor="gray.900"
+          borderRadius="0.8rem"
+          p="2rem"
+          flexDirection="column"
+          gap="0.3rem"
+        >
+          <Box display="flex" alignItems="center">
+            <StaticImage src="../images/icon.png" alt="icon" width={36} />
+            <Heading size="md" fontWeight={600} display="inline-block" pl="1rem" color="white">
+              yoonhaemin.com
             </Heading>
-            <Flex gap={['4rem', '6rem', '8rem', '10rem']} justifyContent="center">
-              <SummaryCard title="총 포스트">{totalPost}개</SummaryCard>
-              <SummaryCard title="블로그 시작">{diffCurrentDate(BLOG_START_DATE)}일</SummaryCard>
-            </Flex>
-          </Flex>
-        </MyInfoSlider>
-        <MyInfoSlider direction="bottom-right">
-          <Flex alignItems={'center'} justifyContent={'center'} flexDirection={'row'} gap="6rem">
-            {isLarge768px && <ProfileCard />}
-            <Flex flexDirection={'column'}>
-              <Heading position={'relative'} margin={'auto'} size={'2xl'}>
-                FE개발자{' '}
-                <Box
-                  display="inline"
-                  textAlign="center"
-                  position="relative"
-                  _after={{
-                    content: '""',
-                    position: 'absolute',
-                    width: '100%',
-                    bottom: -1,
-                    left: 0,
-                    borderBottom: 'solid 10px',
-                    borderColor: 'green.300'
-                  }}
-                >
-                  만두피
-                </Box>{' '}
-                입니다.
+          </Box>
+          <Box display="flex" alignItems="center">
+            <Divider
+              orientation="vertical"
+              height="2.8rem"
+              ml="1rem"
+              mr="1.7rem"
+              variant="dashed"
+              borderLeftWidth="0.25rem"
+            />
+            <FolderIcon width="2.25rem" height="2rem" />
+            <Heading
+              size="sm"
+              fontWeight={400}
+              display="inline-block"
+              pl="1rem"
+              py="0.6rem"
+              color="white"
+              cursor="pointer"
+              _hover={{ color: 'green.300' }}
+              onClick={() => navigate('/tag/all')}
+            >
+              Posts
+            </Heading>
+          </Box>
+          {Object.entries(TAG_MAP).map(([key, value]) => (
+            <Box display="flex" alignItems="center">
+              <Divider
+                orientation="vertical"
+                height="2.8rem"
+                ml="1rem"
+                mr="1.7rem"
+                variant="dashed"
+                borderLeftWidth="0.25rem"
+              />
+              <Divider
+                orientation="vertical"
+                height="2.8rem"
+                ml="1rem"
+                mr="1.7rem"
+                variant="dashed"
+                borderLeftWidth="0.25rem"
+              />
+              <FolderIcon width="2.25rem" height="2rem" />
+              <Heading
+                size="sm"
+                fontWeight={400}
+                display="inline-block"
+                pl="1rem"
+                py="0.6rem"
+                color="white"
+                cursor="pointer"
+                _hover={{ color: 'green.300' }}
+                onClick={() => navigate(`/tag/${key}`)}
+              >
+                {value}
               </Heading>
-              <Text position={'relative'} fontSize="xl">
-                <br /> 개발자로서의 전문성과 경험을 축적하기 위해서
-                <br /> 블로그를 운영하고 있습니다. <br />
-                '아 이사람은 이런 경험을 해봤구나'라고 <br /> 가벼운 마음으로 읽어주셨으면
-                좋겠습니다.
-              </Text>
-            </Flex>
-          </Flex>
-        </MyInfoSlider>
-      </MainPageLayout>
+            </Box>
+          ))}
+        </Flex>
+      </RootLayout>
     </>
   );
 };

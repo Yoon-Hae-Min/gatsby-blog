@@ -18,7 +18,6 @@ const ProfileCard = ({ ...props }) => {
       flexDirection="column"
       alignItems="center"
       width="15rem"
-      margin="auto"
       {...props}
     >
       <Image
