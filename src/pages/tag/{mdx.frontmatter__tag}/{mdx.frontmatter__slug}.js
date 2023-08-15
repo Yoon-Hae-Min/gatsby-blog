@@ -16,12 +16,11 @@ const PostDetailPage = ({ data, children, location }) => {
   const tableOfContents = data.mdx.tableOfContents;
   const recommendPosts = data.allMdx.nodes;
 
-  console.log(recommendPosts);
   return (
     <RootLayout pathname={location.pathname}>
       <Box position="relative">
         <TableOfContents tableOfContents={tableOfContents} />
-        <Box as="section" maxWidth="50rem" margin="auto">
+        <Box as="section" margin="auto" px="2rem">
           <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
             <Tag
               _light={{

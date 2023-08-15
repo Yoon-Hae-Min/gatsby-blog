@@ -16,7 +16,7 @@ const TableOfContents = ({ tableOfContents }: { tableOfContents: TableOfContents
     <Box
       as="aside"
       position="absolute"
-      right={20}
+      right={0}
       display={['none', 'none', 'none', 'none', 'none', 'block']}
     >
       <Box as="nav" position="fixed" borderLeft="1px dashed " p="1rem" paddingLeft="1.8rem">
