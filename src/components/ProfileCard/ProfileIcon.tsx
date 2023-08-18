@@ -20,7 +20,14 @@ const ProfileIcon = ({ name, path, children }: ProfileIconProps) => {
         color: 'gray.600'
       }}
     >
-      <IconButton aria-label={name} backgroundColor="inherit" as="a" href={path} target="_blank">
+      <IconButton
+        aria-label={name}
+        backgroundColor="inherit"
+        as="a"
+        href={path}
+        target="_blank"
+        size="sm"
+      >
         {children}
       </IconButton>
     </Tooltip>

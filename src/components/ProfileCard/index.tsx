@@ -22,18 +22,18 @@ const ProfileCard = ({ ...props }) => {
     >
       <Image
         borderRadius="full"
-        boxSize={['120px', '140px', '160px', '180px']}
+        boxSize={['100px', '120px', '140px', '160px']}
         src="https://avatars.githubusercontent.com/u/49224104?v=4"
         alt="yoonhaemin profile image"
       />
-      <Heading size="lg" marginTop="1rem" fontWeight={700} fontSize={['xl', '3xl', '2xl', '3xl']}>
+      <Heading size="lg" marginTop="1rem" fontWeight={700} fontSize={['xl', '2xl', 'xl', '2xl']}>
         윤해민
       </Heading>
       <Divider marginTop="0.5rem" borderWidth="0.1rem" backgroundColor="white.900" />
       <Text
         size="md"
         fontSize={['sm', 'md', 'sm', 'md']}
-        fontWeight={700}
+        fontWeight={400}
         padding="1rem"
         _light={{ color: 'gray.500' }}
         _dark={{ color: 'white.800' }}
@@ -41,7 +41,7 @@ const ProfileCard = ({ ...props }) => {
         #FE 개발, #React #NextJs #HTML #CSS #Javascript #typescript
       </Text>
       <Divider borderWidth="0.1rem" backgroundColor="white.900" />
-      <Box display="flex" columnGap="1rem" marginTop="0.9rem">
+      <Box display="flex" columnGap="1rem" marginTop="0.4rem">
         <ProfileIcon name={'Github'} path="https://github.com/Yoon-Hae-Min">
           <GithubIcon
             style={{
