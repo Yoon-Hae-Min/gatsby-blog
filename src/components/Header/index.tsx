@@ -28,12 +28,14 @@ const Header = ({ pathname }: { pathname: string }) => {
     <>
       <Box
         as="header"
-        position="sticky"
+        position="fixed"
         top="0"
         width="100%"
         height={HEADER_HEIGHT}
         display="block"
-        backdropFilter="blur(0.8rem)"
+        backdropFilter={
+          typeof window !== 'undefined' && window.scrollY > 20 ? 'blur(10px)' : 'blur(0px)'
+        }
         zIndex={100}
       >
         <Box p={2} display="flex" alignItems="center">

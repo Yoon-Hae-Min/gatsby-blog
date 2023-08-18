@@ -10,14 +10,9 @@ type Props = {
 const HeaderButton = ({ children, onClick, ...props }: Props) => {
   return (
     <IconButton
-      aria-label="Search database"
+      aria-label="header-button"
       icon={children}
-      _dark={{
-        backgroundColor: 'gray.400'
-      }}
-      _light={{
-        backgroundColor: 'white.900'
-      }}
+      backgroundColor="inherit"
       _hover={{
         _dark: {
           backgroundColor: 'gray.500'
