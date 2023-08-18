@@ -1,63 +1,75 @@
-import { Box, Divider, Flex, Heading, Text, useMediaQuery } from '@chakra-ui/react';
+import { Box, Divider, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { graphql, navigate, PageProps } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
 import FolderIcon from '@/assets/svg/folder.svg';
-import RootLayout from '@/components/Layout/RootLayout';
-import ProfileCard from '@/components/ProfileCard';
+import MainPageLayout from '@/components/Layout/MainPageLayout';
+import ProfileIconGroup from '@/components/ProfileCard/ProfileIconGroup';
 import { DOMAIN } from '@/constants';
 import { TAG_MAP } from '@/constants/md';
 
 const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
   const cardData = data.allMdx.edges;
   const totalPost = data.allMdx.totalCount;
-  const [isLarge768px] = useMediaQuery('(min-width: 768px)');
+
   return (
     <>
-      <RootLayout pathname={location.pathname}>
+      <MainPageLayout pathname={location.pathname}>
         <Flex
+          position={'absolute'}
+          top="45%"
+          left="45%"
+          transform="translate(-50%, -30%)"
+          flexDirection="column"
+        >
+          <Heading size="xl">yoonhaemin 개발 블로그</Heading>
+          <Text position={'relative'} size="lg" mt="1rem">
+            '아 이사람은 이런 경험을 해봤구나'하며 가벼운 마음으로 둘러봐 주시면 감사하겠습니다.
+          </Text>
+        </Flex>
+        <Heading mb="1rem" mt={['3rem', '6rem', '9rem', '10rem']} textShadow="lg">
+          INTRODUCE
+        </Heading>
+        <Flex
+          shadow="lg"
+          backgroundColor="gray.900"
+          p="1rem"
+          borderRadius="0.8rem"
           alignItems={'center'}
           justifyContent={'center'}
+          mb={['3rem', '6rem', '9rem', '10rem']}
           flexDirection={['column', 'column', 'row', 'row']}
-          gap="4rem"
-          mb="4rem"
+          gap={['2rem', '3rem', '4rem', '3rem']}
         >
-          <ProfileCard />
+          <Image
+            borderRadius="full"
+            boxSize={['120px', '140px', '160px', '180px']}
+            src="https://avatars.githubusercontent.com/u/49224104?v=4"
+            alt="yoonhaemin profile image"
+          />
           <Flex flexDirection={'column'}>
-            <Heading position={'relative'} width="100%" size={'2xl'}>
-              FE개발자{' '}
-              <Box
-                display="inline"
-                textAlign="center"
-                position="relative"
-                _after={{
-                  content: '""',
-                  position: 'absolute',
-                  width: '100%',
-                  bottom: -1,
-                  left: 0,
-                  borderBottom: 'solid 10px',
-                  borderColor: 'green.300'
-                }}
-              >
-                만두피
-              </Box>{' '}
-              입니다.
+            <Heading position={'relative'} width="100%" size={'lg'}>
+              윤해민
             </Heading>
-            <Text position={'relative'} fontSize="xl">
-              <br /> 개발자로서의 전문성과 경험을 축적하기 위해서
-              <br /> 블로그를 운영하고 있습니다. <br />
-              '아 이사람은 이런 경험을 해봤구나'라고 <br /> 가벼운 마음으로 읽어주셨으면 좋겠습니다.
+            <Text position={'relative'} fontSize="md" my="1rem">
+              안녕하세요 FE 개발자 만두피 입니다. 개발자로서의 전문성과 경험을 축적하기 위해서
+              블로그를 운영하고 있습니다.
             </Text>
+            <ProfileIconGroup />
           </Flex>
         </Flex>
+        <Heading mb="1rem" textShadow="lg">
+          STRUCTURE
+        </Heading>
         <Flex
+          shadow="lg"
           backgroundColor="gray.900"
           borderRadius="0.8rem"
           p="2rem"
           flexDirection="column"
           gap="0.3rem"
+          mb="4rem"
         >
           <Box display="flex" alignItems="center">
             <StaticImage src="../images/icon.png" alt="icon" width={36} />
@@ -124,7 +136,7 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
             </Box>
           ))}
         </Flex>
-      </RootLayout>
+      </MainPageLayout>
     </>
   );
 };
