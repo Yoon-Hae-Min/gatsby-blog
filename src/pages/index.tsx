@@ -1,9 +1,9 @@
-import { Box, Divider, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { graphql, navigate, PageProps } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
-import FolderIcon from '@/assets/svg/folder.svg';
+import DirectoryLink from '@/components/DirectoryIink';
 import MainPageLayout from '@/components/Layout/MainPageLayout';
 import ProfileIconGroup from '@/components/ProfileCard/ProfileIconGroup';
 import { DOMAIN } from '@/constants';
@@ -22,6 +22,7 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
           left="45%"
           transform="translate(-50%, -30%)"
           flexDirection="column"
+          color="white"
         >
           <Heading size="xl">yoonhaemin 개발 블로그</Heading>
           <Text position={'relative'} size="lg" mt="1rem">
@@ -33,7 +34,9 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
         </Heading>
         <Flex
           shadow="lg"
-          backgroundColor="gray.900"
+          _dark={{
+            backgroundColor: 'gray.900'
+          }}
           p="1rem"
           borderRadius="0.8rem"
           alignItems={'center'}
@@ -62,80 +65,31 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
         <Heading mb="1rem" textShadow="lg">
           STRUCTURE
         </Heading>
-        <Flex
+        <Box
           shadow="lg"
-          backgroundColor="gray.900"
+          _dark={{
+            backgroundColor: 'gray.900'
+          }}
           borderRadius="0.8rem"
           p="2rem"
-          flexDirection="column"
           gap="0.3rem"
           mb="4rem"
         >
           <Box display="flex" alignItems="center">
             <StaticImage src="../images/icon.png" alt="icon" width={36} />
-            <Heading size="md" fontWeight={600} display="inline-block" pl="1rem" color="white">
+            <Heading size="md" fontWeight={600} display="inline-block" pl="1rem">
               yoonhaemin.com
             </Heading>
           </Box>
-          <Box display="flex" alignItems="center">
-            <Divider
-              orientation="vertical"
-              height="2.8rem"
-              ml="1rem"
-              mr="1.7rem"
-              variant="dashed"
-              borderLeftWidth="0.25rem"
-            />
-            <FolderIcon width="2.25rem" height="2rem" />
-            <Heading
-              size="sm"
-              fontWeight={400}
-              display="inline-block"
-              pl="1rem"
-              py="0.6rem"
-              color="white"
-              cursor="pointer"
-              _hover={{ color: 'green.300' }}
-              onClick={() => navigate('/tag/all')}
-            >
-              Posts
-            </Heading>
-          </Box>
+          <DirectoryLink depth={1} onClick={() => navigate('/tag/all')}>
+            Posts
+          </DirectoryLink>
           {Object.entries(TAG_MAP).map(([key, value]) => (
-            <Box display="flex" alignItems="center">
-              <Divider
-                orientation="vertical"
-                height="2.8rem"
-                ml="1rem"
-                mr="1.7rem"
-                variant="dashed"
-                borderLeftWidth="0.25rem"
-              />
-              <Divider
-                orientation="vertical"
-                height="2.8rem"
-                ml="1rem"
-                mr="1.7rem"
-                variant="dashed"
-                borderLeftWidth="0.25rem"
-              />
-              <FolderIcon width="2.25rem" height="2rem" />
-              <Heading
-                size="sm"
-                fontWeight={400}
-                display="inline-block"
-                pl="1rem"
-                py="0.6rem"
-                color="white"
-                cursor="pointer"
-                _hover={{ color: 'green.300' }}
-                onClick={() => navigate(`/tag/${key}`)}
-              >
-                {value}
-              </Heading>
-            </Box>
+            <DirectoryLink depth={2} onClick={() => navigate(`/tag/${key}`)} key={key}>
+              {value}
+            </DirectoryLink>
           ))}
-        </Flex>
+        </Box>
       </MainPageLayout>
     </>
   );
