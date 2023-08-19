@@ -1,4 +1,4 @@
-import { Box, Progress, Spacer } from '@chakra-ui/react';
+import { Box, Progress, Spacer, useTheme } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { HEADER_HEIGHT } from '@/constants/css';
@@ -8,6 +8,10 @@ import ToggleThemeButton from './ToggleThemeButton';
 
 const Header = ({ pathname }: { pathname: string }) => {
   const [progressValue, setProgressValue] = useState(0);
+  const theme = useTheme();
+
+  const isScrolled = progressValue > 1 || pathname !== '/';
+
   const handleScroll = (): void => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (scrollTop === 0) {
@@ -33,12 +37,28 @@ const Header = ({ pathname }: { pathname: string }) => {
         width="100%"
         height={HEADER_HEIGHT}
         display="block"
-        backdropFilter={
-          typeof window !== 'undefined' && window.scrollY > 20 ? 'blur(10px)' : 'blur(0px)'
-        }
         zIndex={100}
+        {...(isScrolled
+          ? {
+              backdropFilter: 'blur(10px)',
+              _dark: {
+                backgroundColor: `${theme.colors.gray[800]}CC`,
+                transition: 'background-color 0.3s ease'
+              },
+              _light: {
+                color: theme.colors.gray[800],
+                backgroundColor: `${theme.colors.white[900]}AA`,
+                transition: 'background-color 0.3s ease'
+              }
+            }
+          : {
+              backdropFilter: 'blur(0px)',
+              _light: {
+                color: theme.colors.white[900]
+              }
+            })}
       >
-        <Box p={2} display="flex" alignItems="center">
+        <Box p={2} display="flex" alignItems="center" fill="inherit">
           <TitleLink to="/">yoonhaemin.com</TitleLink>
           <Spacer />
           <TitleLink to="/tag/all">Posts</TitleLink>
