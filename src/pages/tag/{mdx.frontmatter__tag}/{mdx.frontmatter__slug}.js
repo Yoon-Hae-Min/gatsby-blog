@@ -18,7 +18,7 @@ const PostDetailPage = ({ data, children, location }) => {
 
   return (
     <RootLayout pathname={location.pathname}>
-      <Box position="relative">
+      <Box position="relative" mt="4rem">
         <TableOfContents tableOfContents={tableOfContents} />
         <Box as="section" margin="auto" px="2rem">
           <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
