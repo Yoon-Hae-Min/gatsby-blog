@@ -20,8 +20,8 @@ const PostDetailPage = ({ data, children, location }) => {
     <RootLayout pathname={location.pathname}>
       <Box position="relative" mt="4rem">
         <TableOfContents tableOfContents={tableOfContents} />
-        <Box as="section" margin="auto" px="2rem">
-          <Box as="header" margin="auto" textAlign="center" mb="6rem" mt="2rem">
+        <Box as="section" margin="auto" px="1rem">
+          <Box as="header" margin="auto" textAlign="center" mb="3rem" mt="2rem">
             <Tag
               _light={{
                 color: 'gray.700'

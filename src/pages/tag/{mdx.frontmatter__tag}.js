@@ -19,7 +19,7 @@ const TagPage = ({ data, location, params }) => {
         fontWeight={700}
         textAlign="center"
         size="2xl"
-        marginTop={['2rem', '2rem', '3rem', '4rem']}
+        marginTop={['8rem', '4rem', '4rem', '6rem']}
         marginBottom="4rem"
       >
         {TAG_MAP[params.frontmatter__tag]}({totalPost})

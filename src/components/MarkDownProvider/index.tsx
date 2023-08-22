@@ -11,6 +11,8 @@ import {
 import { MDXProvider } from '@mdx-js/react';
 import React, { HTMLAttributes, ReactNode } from 'react';
 
+import { DEFAULT_FONT_SIZE } from '@/constants/md';
+
 const HnComponent = ({
   componentsProps,
   ...headingProps
@@ -49,7 +51,7 @@ const components = {
       {...props}
     />
   ),
-  p: (props: TextProps) => <Text as="p" lineHeight="1.9" fontSize="1.2rem" {...props} />,
+  p: (props: TextProps) => <Text as="p" lineHeight="1.9" fontSize={DEFAULT_FONT_SIZE} {...props} />,
   ul: (props: Object) => (
     <Box
       as="ul"
@@ -59,13 +61,19 @@ const components = {
           marginLeft: '1.6rem'
         }
       }}
-      fontSize="1.2rem"
+      fontSize={DEFAULT_FONT_SIZE}
       lineHeight="1.6"
       {...props}
     />
   ),
   ol: (props: Object) => (
-    <Box as="ol" fontSize="1.2rem" lineHeight="1.6" listStylePosition="inside" {...props} />
+    <Box
+      as="ol"
+      fontSize={DEFAULT_FONT_SIZE}
+      lineHeight="1.6"
+      listStylePosition="inside"
+      {...props}
+    />
   ),
   li: (props: Object) => (
     <Box
@@ -80,7 +88,7 @@ const components = {
         }
       }}
       my={'1.2rem'}
-      fontSize="1.2rem"
+      fontSize={DEFAULT_FONT_SIZE}
       listStylePosition="inside"
       {...props}
     />
@@ -108,7 +116,8 @@ const components = {
       </Box>
     );
   },
-  img: (props: Object) => <Image {...props} margin="1.8rem auto" />
+  img: (props: Object) => <Image {...props} margin="1.8rem auto" />,
+  code: (props: Object) => <Box as="code" {...props} fontSize={DEFAULT_FONT_SIZE} />
 };
 
 const MarkDownProvider = ({ children }: { children: ReactNode }) => {

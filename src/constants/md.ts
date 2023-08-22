@@ -5,3 +5,5 @@ export const TAG_MAP = {
   prography: '프로그라피',
   'gatsby-blog': '블로그 만들기'
 } as const;
+
+export const DEFAULT_FONT_SIZE = ['0.84rem', '1.1rem', '1.2rem', '1.2rem'];

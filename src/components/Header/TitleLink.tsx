@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import React, { ReactNode } from 'react';
 
+import { DEFAULT_FONT_SIZE } from '@/constants/md';
+
 type TitleProps = {
   children: ReactNode;
   to: string;
@@ -11,7 +13,14 @@ type TitleProps = {
 const TitleLink = ({ children, to }: TitleProps) => {
   return (
     <Link to={to}>
-      <LogoHeading as="h4" size="md" letterSpacing="-0.2px" fontWeight={700} p={2}>
+      <LogoHeading
+        as="h4"
+        size="md"
+        fontSize={DEFAULT_FONT_SIZE}
+        letterSpacing="-0.2px"
+        fontWeight={700}
+        p={2}
+      >
         {children}
       </LogoHeading>
     </Link>
