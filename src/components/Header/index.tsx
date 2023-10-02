@@ -61,6 +61,9 @@ const Header = ({ pathname }: { pathname: string }) => {
         <Box p={2} display="flex" alignItems="center" fill="inherit">
           <TitleLink to="/">yoonhaemin.com</TitleLink>
           <Spacer />
+          <TitleLink to="https://yoonhaemin.notion.site/FE-haemin-91307a32aaa744bb8dae579bebc4b13b?pvs=4">
+            Notion
+          </TitleLink>
           <TitleLink to="/tag/all">Posts</TitleLink>
           <ToggleThemeButton />
         </Box>

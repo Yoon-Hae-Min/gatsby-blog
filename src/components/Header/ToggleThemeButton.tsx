@@ -13,6 +13,7 @@ const ToggleThemeButton = () => {
       onClick={toggleColorMode}
       backgroundColor="inherit"
       color="inherit"
+      padding="0.3rem"
     >
       <ToggleThemeIcon />
     </IconButton>

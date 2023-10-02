@@ -81,8 +81,18 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
               yoonhaemin.com
             </Heading>
           </Box>
+          <DirectoryLink
+            depth={1}
+            onClick={() =>
+              navigate(
+                'https://yoonhaemin.notion.site/FE-haemin-91307a32aaa744bb8dae579bebc4b13b?pvs=4'
+              )
+            }
+          >
+            Notion (기술을 설명하는 글)
+          </DirectoryLink>
           <DirectoryLink depth={1} onClick={() => navigate('/tag/all')}>
-            Posts
+            Posts (경험을 담은 글)
           </DirectoryLink>
           {Object.entries(TAG_MAP).map(([key, value]) => (
             <DirectoryLink depth={2} onClick={() => navigate(`/tag/${key}`)} key={key}>
