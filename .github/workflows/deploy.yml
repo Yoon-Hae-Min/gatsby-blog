@@ -1,0 +1,15 @@
+name: Netlify Build on Tag or Blog Changes
+
+on:
+  push:
+    paths:
+      - 'blog/**'
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Netlify Webhook
+        run: curl -X POST ${{ secrets.NETLIFY_WEBHOOK_URL }}
