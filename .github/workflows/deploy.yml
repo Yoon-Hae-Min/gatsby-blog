@@ -4,9 +4,8 @@ on:
   push:
     paths:
       - 'blog/**'
-  push:
-    tags:
-      - '*'
+  release:
+    types: [published]
 
 jobs:
   build:
