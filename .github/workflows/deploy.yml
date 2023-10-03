@@ -3,7 +3,7 @@ name: Netlify Build on Tag or Blog Changes
 on:
   push:
     paths:
-      - 'blog/**'
+      - '**.md'
     tags:
       - '*'
 
