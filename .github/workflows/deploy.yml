@@ -15,5 +15,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Netlify Webhook
-        run: | 
-        echo ".md file has been changed!"
+        run: echo ".md file has been changed!"
