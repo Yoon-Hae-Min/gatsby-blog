@@ -5,12 +5,14 @@ on:
     paths:
       - 'blog/**'
 
-permissions:
-  contents: read
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Netlify Webhook
-        run: echo ".md file has been changed!"
+        run: curl -X POST ${{ secrets.NETLIFY_WEBHOOK_URL }}
