@@ -5,7 +5,6 @@ import * as React from 'react';
 import RootLayout from '@/components/Layout/RootLayout';
 import PostCard from '@/components/PostCard';
 import TagList from '@/components/TagList';
-import { DOMAIN } from '@/constants';
 import { TAG_MAP } from '@/constants/md';
 
 const AllTagPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => {
@@ -81,7 +80,7 @@ export const Head = ({ data }: PageProps<Queries.BlogInfoListQuery>) => {
       <title>FE haemin</title>
       <meta name="author" content="yoonhaemin" />
       <meta name="description" content="프론트엔드 개발자 만두피의 공간입니다." />
-      <link rel="canonical" href={DOMAIN} />
+      <link rel="canonical" href={process.env.GATSBY_DOMAIN_URL} />
     </>
   );
 };

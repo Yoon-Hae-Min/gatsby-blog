@@ -3,11 +3,15 @@ import remarkGfm from 'remark-gfm';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+import dotenv from 'dotenv';
+dotenv.config({
+  path: `.env`
+});
 
 const config = {
   siteMetadata: {
     title: `FE Haemin`,
-    siteUrl: 'https://yoon-hae-min.github.io/',
+    siteUrl: process.env.GATSBY_DOMAIN_URL,
     description: '프론트엔드 개발자 만두피의 공간입니다.',
     charset: 'utf-8',
     author: `yoonhaemin`
@@ -24,7 +28,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingIds: ['G-9ZZV8B7KWG']
+        trackingIds: [process.env.GA_TRACKING_ID]
       }
     },
     'gatsby-plugin-emotion',
@@ -136,8 +140,8 @@ const config = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://yoon-hae-min.github.io/',
-        sitemap: 'https://yoon-hae-min.github.io/sitemap.xml',
+        host: process.env.GATSBY_DOMAIN_URL,
+        sitemap: `${process.env.GATSBY_DOMAIN_URL}/sitemap.xml`,
         env: {
           development: {
             policy: [{ userAgent: '*', disallow: ['/'] }]
