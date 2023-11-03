@@ -9,6 +9,8 @@ description: 'Redux core를 코드 레벨로 분석하며 Redux의 철학과 원
 
 ## 시리즈
 
+> 사용한 코드: [Redux Repository](https://github.com/reduxjs/redux/tree/master/src)
+
 1편: [Redux 코드를 까보자 - store 편](https://yoonhaemin.com/tag/technical-experience/analyze-redux-store/)
 
 2편: [Redux 코드를 까보자 - middleware 편](https://yoonhaemin.com/tag/technical-experience/analyze-redux-middleware/)
