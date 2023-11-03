@@ -7,7 +7,11 @@ thumbnail: './thumbnail.png'
 description: 'Redux core를 코드 레벨로 분석하며 Redux의 철학과 원리를 이해하자 store 편'
 ---
 
-> 코드 내 주석인 `// 파일명.ts:라인수` 는 Redux 라이브러리의 파일을 의미하는 것이고 해당 주석이 없으면 그냥 예시 코드입니다.
+## 시리즈
+
+1편: [Redux 코드를 까보자 - store 편](https://yoonhaemin.com/tag/technical-experience/analyze-redux-store/)
+
+2편: [Redux 코드를 까보자 - middleware 편](https://yoonhaemin.com/tag/technical-experience/analyze-redux-middleware/)
 
 ## Redux를 살펴보자
 

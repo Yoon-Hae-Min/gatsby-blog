@@ -7,6 +7,14 @@ thumbnail: './thumbnail.png'
 description: 'Redux core를 코드 레벨로 분석하며 Redux의 철학과 원리를 이해하자 middleware 편'
 ---
 
+## 시리즈
+
+1편: [Redux 코드를 까보자 - store 편](https://yoonhaemin.com/tag/technical-experience/analyze-redux-store/)
+
+2편: [Redux 코드를 까보자 - middleware 편](https://yoonhaemin.com/tag/technical-experience/analyze-redux-middleware/)
+
+## 시작
+
 redux에서는 dispatch가 실행되는 앞뒤로 추가적인 로직을 실행할 수 있도록 하는 middleware가 있습니다. 대표적으로 redux-thunk, redux-saga 등의 라이브러리도 있고 개발자가 프로잭트내에 직접 만든 middleware도 있습니다. 이런 middleware들이 어떤식으로 구성이 되는지 코드를 까보면서 한번 알아보겠습니다.
 
 <br/>
