@@ -7,7 +7,7 @@ const Comment = () => {
     const utterances = document.createElement('script');
     const attributes = {
       src: 'https://giscus.app/client.js',
-      'data-repo': 'Yoon-Hae-Min/Yoon-Hae-Min.github.io',
+      'data-repo': 'Yoon-Hae-Min/gatsby-blog',
       'data-repo-id': 'R_kgDOJrk_pw',
       'data-category': 'Announcements',
       'data-category-id': 'DIC_kwDOJrk_p84CXFLq',
