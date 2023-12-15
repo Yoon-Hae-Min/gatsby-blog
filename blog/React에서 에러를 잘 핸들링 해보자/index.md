@@ -2,7 +2,7 @@
 title: 'React에서 에러를 “잘” 핸들링 해보자'
 slug: 'react-error-handling'
 tag: 'experience'
-createAt: '2023-12-12'
+createAt: '2023-12-15'
 thumbnail: './thumbnail.png'
 description: 'React에서 일어나는 에러들의 계층설정부터 sentry를 이용한 에러 핸들링까지 알아보자'
 ---
