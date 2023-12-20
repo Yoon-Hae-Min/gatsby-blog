@@ -69,6 +69,12 @@ const components = {
   ol: (props: Object) => (
     <Box
       as="ol"
+      sx={{
+        '* > ol': {
+          margin: 0,
+          marginLeft: '1.6rem'
+        }
+      }}
       fontSize={DEFAULT_FONT_SIZE}
       lineHeight="1.6"
       listStylePosition="inside"
@@ -79,7 +85,7 @@ const components = {
     <Box
       as="li"
       sx={{
-        '* > ul': {
+        '* > ul, * > ol': {
           margin: 0,
           marginLeft: '1.6rem'
         },
