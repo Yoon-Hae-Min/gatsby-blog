@@ -138,7 +138,7 @@ export const Head = ({ data }: PageProps<Queries.BlogInfoListQuery>) => {
       <meta name="description" content="프론트엔드 개발자 만두피의 공간입니다." />
       <link rel="canonical" href={process.env.GATSBY_DOMAIN_URL} />
       <meta name="google-site-verification" content="PCOijUst0H4z0pBSyq_WfWqj_NRMTY6jbfNWqtMr-co" />
-      <meta name="naver-site-verification" content="fbd9f28ae30c9388ab765267caaefc5108122c4f" />
+      <meta name="naver-site-verification" content="a72e8899e421467ba635a05868f189569febff79" />
     </>
   );
 };
