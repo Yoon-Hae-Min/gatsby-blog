@@ -174,15 +174,13 @@ const useModal = (component: React.FC) => {
   const id = useId();
   // 컴포넌트에 id를 부여해서 식별한다.
 
-  const modalComponent = useMemo(() => component, []);
-
   const openModal = useCallback(() => {
     setIsOpen(true);
-    setModal((pre) => [...pre, { id: id, element: modalComponent }]);
+    setModal((pre) => [...pre, { id: id, element: component }]);
     // modal을 전역상태에 추가한다
     document.body.style.overflow = 'hidden';
     // modal이 open되면 배경의 스크롤을 막아야함
-  }, []);
+  }, [component, id, setModal]);
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
@@ -191,7 +189,7 @@ const useModal = (component: React.FC) => {
 
     if (isArrEmpty(modalElements)) document.body.style.overflow = 'unset';
     // modal이 모두 꺼지면 배경의 스크롤이 가능해야함
-  }, []);
+  }, [id, modalElements, setModal]);
 
   return { isOpen, openModal, closeModal };
 };
