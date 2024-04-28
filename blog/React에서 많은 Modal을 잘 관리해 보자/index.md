@@ -257,3 +257,86 @@ modal을 제어하는 부분을 hook으로 모으면서 응집도를 높일 수 
 특히 불필요한 코드들이 줄이면서 더 이상 개발자는 modal의 상태를 지정하는 state modal의 렌더링 위치 등을 알 필요가 없어졌습니다. 그냥 modal을 잘 디자인하고 잘 동작시키기만 하는데 집중을 하면 됩니다.
 
 ![극찬을 받았다!!](./5.png)
+
+---
+
+# 2024.04.28 배포
+
+gomterview를 모노레포로 적용하면서 해당 useModal을 패키지로 분리하고 [배포](https://www.npmjs.com/package/@gomterview/use-modal)를 진행하였습니다. 이제 해당 useModal을 직접 프로젝트에 사용해 보실 수 있습니다.
+
+다만 기존 블로그 글에서 변경 사항이 2가지 있으니 참고해 주시기바랍니다.
+
+1. 의존성 변경
+   프로젝트 내부에서는 전역 상태로 recoil을 사용하고 있어 컴포넌트를 recoil에 저장했는데요 배포 시에는 이런 특정 라이브러리의 의존성을 줄이기 위해 react의 context로 같은 로직을 [재구현](https://github.com/the-NDD/Gomterview-FE/blob/main/packages/useModal/src/modalProvider.tsx) 하였습니다.
+
+2. 테스트 추가
+   기존에는 gomterview 프로젝트 내부에서 사용할 동작만 고려해서 작성하였는데 배포를 진행하다 보니 좀 더 다양한 사례에서 고려해 보고자 하였습니다. 또한 테스트 코드를 통해 이를 검증해 보고자 하였습니다. 첫 배포에서 고려된 사항은 다음과 같습니다. (구현 코드는 바뀐 게 없이 검증 작업만 추가했습니다.
+   - 중첩적으로 Modal을 띄울 수 있다. (modal내부에 modal 띄우기)
+   - Modal을 중첩적으로 호출했을 시 마지막 호출 이전의 Modal을 닫을 수 있다.
+
+```tsx
+const RecursiveModal = ({
+  limit,
+  closeModal: closeCurrentModal
+}: {
+  limit: number;
+  closeModal?: () => void;
+}) => {
+  const { openModal, closeModal } = useModal(
+    () => limit > 0 && <RecursiveModal limit={limit - 1} closeModal={closeModal} />
+  );
+
+  if (limit <= 0) return;
+
+  return (
+    <div>
+      <h3>Modal Level {limit}</h3>
+
+      {limit - 1 > 0 && <button onClick={openModal}>Open {limit - 1}</button>}
+
+      {closeCurrentModal && <button onClick={closeCurrentModal}>Close {limit}</button>}
+    </div>
+  );
+};
+
+const renderWithModalProvider = (children: React.ReactNode) => {
+  return render(<ModalProvider>{children}</ModalProvider>);
+};
+
+//...(중략)...
+
+it('Modal을 중첩적으로 호출했을시 마지막 호출 이전의 Modal을 닫을 수 있다.', async () => {
+  //arrange: 테스트 환경 구성
+  const user = userEvent.setup();
+
+  // act: dom에 컴포넌트 랜더링
+  renderWithModalProvider(<RecursiveModal limit={5} />);
+
+  const openButton4 = await screen.findByText('Open 4');
+  await user.click(openButton4);
+  const openButton3 = await screen.findByText('Open 3');
+  await user.click(openButton3);
+  const openButton2 = await screen.findByText('Open 2');
+  await user.click(openButton2);
+  const openButton1 = await screen.findByText('Open 1');
+  await user.click(openButton1);
+
+  const closeButton3 = await screen.findByText('Close 3');
+  const closeButton2 = await screen.findByText('Close 2');
+  await user.click(closeButton2);
+  await user.click(closeButton3);
+
+  // assert: 테스트 결과 확인
+  expect(await screen.findByText('Modal Level 1')).toBeInTheDocument();
+  expect(await screen.findByText('Modal Level 4')).toBeInTheDocument();
+  expect(await screen.findByText('Modal Level 5')).toBeInTheDocument();
+  expect(screen.queryByText('Modal Level 2')).not.toBeInTheDocument();
+  expect(screen.queryByText('Modal Level 3')).not.toBeInTheDocument();
+});
+```
+
+테스트 코드는 가상의 테스트 환경에 실제 코드를 실행시켜 해당 동작이 올바르게 되는지를 보려 하였습니다. 따라서 테스트 코드 자체는 굉장히 직관적으로 작성할 수 있었습니다. 실제 동작처럼 dom을 테스트 환경에서 렌더링하고 여러 개의 modal을 띄우고 특정 modal을 닫으며 dom에 닫히지 않는 modal만 남아있는지 검증하였습니다.
+
+## 직접 사용해 보기
+
+https://codesandbox.io/s/usemodal-ktv8ws
