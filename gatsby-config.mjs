@@ -94,6 +94,17 @@ const config = {
         },
         gatsbyRemarkPlugins: [
           {
+            resolve: `gatsby-remark-embedder`,
+            options: {
+              customTransformers: [
+                // Your custom transformers
+              ],
+              services: {
+                // The service-specific options by the name of the service
+              }
+            }
+          },
+          {
             resolve: `gatsby-remark-autolink-headers`
           },
           'gatsby-remark-gifs',

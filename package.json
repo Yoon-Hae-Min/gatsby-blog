@@ -36,6 +36,7 @@
     "gatsby-plugin-typescript": "^5.10.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-autolink-headers": "^6.11.0",
+    "gatsby-remark-embedder": "^7.0.0",
     "gatsby-remark-gifs": "^1.2.0",
     "gatsby-remark-images": "^7.10.0",
     "gatsby-remark-prismjs": "^7.10.0",
