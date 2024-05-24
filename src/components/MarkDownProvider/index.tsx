@@ -9,6 +9,7 @@ import {
   TextProps
 } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
+import { Link as GatsbyLink } from 'gatsby';
 import React, { HTMLAttributes, ReactNode } from 'react';
 
 import { DEFAULT_FONT_SIZE } from '@/constants/md';
@@ -44,6 +45,8 @@ const components = {
   h6: (props: HTMLAttributes<HTMLHeadingElement>) => <HnComponent componentsProps={props} />,
   a: (props: LinkProps) => (
     <Link
+      as={GatsbyLink}
+      to={props.href}
       color="blue.300"
       fontWeight={500}
       _dark={{ fill: 'white.900' }}
