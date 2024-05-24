@@ -16,6 +16,7 @@ const DirectoryLink = ({ onClick, depth, children }: DirectoryLinkProps) => {
     <Flex alignItems="center">
       {Array.from({ length: depth }).map((_, index) => (
         <Divider
+          key={index}
           orientation="vertical"
           height="2.8rem"
           ml="1rem"

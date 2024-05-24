@@ -2,8 +2,8 @@ import { Box, Heading, Link } from '@chakra-ui/react';
 import React from 'react';
 
 type TableOfContentsItemType = {
-  url: string;
-  title: string;
+  url?: string;
+  title?: string;
   items?: TableOfContentsItemType[];
 };
 
@@ -32,12 +32,14 @@ const TableOfContents = ({ tableOfContents }: { tableOfContents: TableOfContents
 const TableOfContent = ({ items }: { items: TableOfContentsItemType[] }) => {
   return (
     <Box as="ol" listStyleType="none" paddingLeft={`${1.2}rem`}>
-      {items.map((i, index) => (
-        <Box as="li" key={i.url} lineHeight="2.1rem">
-          <Link href={i.url}>{i.title}</Link>
-          {i.items && <TableOfContent items={i.items} key={`nested-${index}`} />}
-        </Box>
-      ))}
+      {items.map((i, index) => {
+        return (
+          <Box as="li" key={i.url ?? `empty-${index}`} lineHeight="2.1rem">
+            <Link href={i.url}>{i.title}</Link>
+            {i.items && <TableOfContent key={`${i.url}-${index}`} items={i.items} />}
+          </Box>
+        );
+      })}
     </Box>
   );
 };

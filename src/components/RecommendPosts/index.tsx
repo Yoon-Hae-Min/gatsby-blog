@@ -37,6 +37,7 @@ const RecommendPosts = ({ posts }: RecommendPostsProps) => {
                   fontSize: '1rem'
                 }
               }}
+              key={slug}
             >
               <PostCard
                 thumbnail={thumbnail}
