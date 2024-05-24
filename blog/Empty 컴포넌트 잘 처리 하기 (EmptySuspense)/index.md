@@ -21,7 +21,7 @@ description: 'suspense처럼 선언적으로 Empty 컴포넌트를 처리하는 
 
 컴포넌트 상에서 모두 표현을 해주면 다음과 같은 구조로 이루어지게 됩니다.
 
-```tsx
+```jsx
 const { data, isLoading, isError } = useQuery();
 
 if (!data) {
@@ -52,13 +52,14 @@ Suspense 컴포넌트를 사용하면 Loading이라는 관심사를 Suspense에 
 <br/>
 
 데이터가 비어있을 때 다음과 같이 비어있다는 화면을 보여주어야 하는데 이 또한 비슷한 방법으로 처리하면 3개의 관심사가 잘 분리가 되지 않을까 생각하였습니다.
+
 ![해당 화면은 과연 List컴포넌트의 내부로 봐야 하는가??](./2.png)
 
 ## 목표 설정
 
 아이디어는 Suspense와 ErrorBoundary처럼 상위 컴포넌트를 감싸기만 하면 감싸인 위치에 맞게 Empty 컴포넌트가 렌더링 되도록 하는 것이 목표였습니다.
 
-```tsx
+```jsx
 <ErrorBoundary fallback={}>
 	<Suspense fallback={}>
 		<EmptySuspense fallback={}>
@@ -86,11 +87,11 @@ Suspense와 ErrorBoundary의 특징은 하위 컴포넌트에서 throw 하면 �
 2. 여러 개의 Provider를 사용하더라도 독립적으로 작동한다.
 3. 다른 라이브러리에 의존성이 없다.
 
-### 1. 여러 개가 중첩해 있을 때 가장 하위에 있는 Provider가 적용된다.
+### 여러 개가 중첩해 있을 때 가장 하위에 있는 Provider가 적용된다.
 
 EmptySuspense는 하나의 페이지에서 여러 개가 사용될 수 있습니다. 그에 맞는 계층 구조도 생길 수 있죠. 여러 개의 컴포넌트가 중첩되더라도 가장 가까운 컴포넌트가 반응해야 하는데요. contextAPI를 사용하면 이를 가능하게 해 줍니다.
 
-```tsx
+```jsx
 // By ChatGPT4.0
 import React, { createContext, useState } from 'react';
 
@@ -147,13 +148,13 @@ export default App;
 
 해당 코드를 보면 2개의 중첩된 context가 있음에도 불구하고 가장 마지막에 있는 Provider의 값을 사용하게 됩니다.
 
-### 2. 여러 개의 Provider를 사용하더라도 독립적으로 작동한다.
+### 여러 개의 Provider를 사용하더라도 독립적으로 작동한다.
 
 EmptySuspense는 하나의 페이지에서 여러 개가 사용할 수 있습니다. 독립적이지 않다면 하나의 값이 변경되면 모든 empty가 동시에 변경이 되는 일이 생길 수 있습니다.
 
 하지만 contextAPI는 하나의 context에 대해서 여러 개의 Provider가 있더라도 주입하는 state가 독립적이기 때문에 같은 context를 사용하더라도 다 다른 독립적인 값으로 작동합니다.
 
-```tsx
+```jsx
 // By ChatGPT4.0
 
 import React, { createContext, useState } from 'react';
@@ -193,7 +194,7 @@ function App() {
 }
 ```
 
-### 3. 다른 라이브러리에 의존성이 없다.
+### 다른 라이브러리에 의존성이 없다.
 
 React API의 기능을 사용해서 다른 라이브러리에 의존하지 않아 타 라이브러리에 대응할 일이 없습니다. 따라서 한번 만들어두면 버그가 있지 않는 한 수정 없이 오래 사용할 수 있습니다.
 
@@ -201,12 +202,12 @@ React API의 기능을 사용해서 다른 라이브러리에 의존하지 않�
 
 간단합니다. 만약 하위에서 전파받은 데이터가 있으면 callback으로 들어오는 컴포넌트를 보여주고 남은 게 없다면 기존의 것을 렌더링하는 방식입니다.
 
-```tsx
+```jsx
 import React, { createContext, useRef, useState } from 'react';
 
 type EmptySuspenseProps = {
-  children: React.ReactNode;
-  callback: React.ReactNode;
+  children: React.ReactNode,
+  callback: React.ReactNode
 };
 
 export const EmptyContext = createContext({
@@ -229,7 +230,7 @@ export default EmptySuspense;
 
 그러면 하위 컴포넌트에서는 이 isEmpty라는 값을 조정해 주어야 합니다. 저는 이것을 custom hook을 이용해서 작성했는데요
 
-```tsx
+```jsx
 import { EmptyContext } from '@foundation/EmptySuspense/EmptySuspense';
 import { useContext, useEffect } from 'react';
 
@@ -249,7 +250,7 @@ export default useEmptySuspenseEffect;
 
 ## 사용법
 
-```tsx
+```jsx
 const useCategoryQuery = () => {
   const result = useQuery({
     queryKey: QUERY_KEY.CATEGORY,
@@ -260,7 +261,7 @@ const useCategoryQuery = () => {
 };
 ```
 
-```tsx
+```jsx
 <EmptySuspense callback={<QuestionTabPanelBlank />}>
   <QuestionAccordionList
     isEditMode={isEditMode}
@@ -285,13 +286,13 @@ ErrorBoundary도 마찬가지입니다. 하위에서 받은 Error를 해결했�
 
 반면에 지금 만든 EmptySuspense의 경우에는 한번 Empty가 되어버리면 이를 해소하기 위해서는 컴포넌트를 다시 mount 해서 계산하는 것이 유일한 방법입니다. 그래서 empty 상태를 다시 계산하기 위한 옵션을 추가했습니다.
 
-```tsx
+```jsx
 import React, { createContext, useRef, useState } from 'react';
 
 type EmptySuspenseProps = {
-  children: React.ReactNode;
-  callback: React.ReactNode;
-  trigger?: boolean;
+  children: React.ReactNode,
+  callback: React.ReactNode,
+  trigger?: boolean
 };
 
 export const EmptyContext = createContext({
@@ -328,7 +329,7 @@ trigger로 지정되는 값이 이전 상태와 다르다면 children으로 다�
 
 선택된 질문만 보기의 상태를 trigger로 넘겨 toggle 옵션이 클릭 될 때마다 데이터의 반값을 다시 계산하도록 하였습니다.
 
-```tsx
+```jsx
 <EmptySuspense callback={<QuestionTabPanelBlank />} trigger={onlySelectedOption}>
   <QuestionAccordionList
     isEditMode={isEditMode}
@@ -339,19 +340,16 @@ trigger로 지정되는 값이 이전 상태와 다르다면 children으로 다�
 </EmptySuspense>
 ```
 
-```tsx
+```jsx
 // QuestionAccordionList 컴포넌트 중 일부
 
 import useEmptySuspenseEffect from '@hooks/useEmptySuspenseEffect';
 
-...
 const questionData = onlySelectedOption ? selectedQuestions : questionAPIData;
 // toggle 버튼에 따라서 어떤 데이터를 보여줄 것인지 선택
 
 useEmptySuspenseEffect(questionData);
 // 해당 데이터에 대해서 반값이라면 EmptySuspense에 callback을 실행하는 effect
-
-...
 ```
 
 이제 Suspense와 ErrorBoundary까지 함께 사용하니 컴포넌트 안에는 해당 컴포넌트에 대한 책임만 남아있고 선언적으로 프로그래밍이 되어 어떤 구조로 어느 구역에 렌더링 되는지 쉽게 알 수 있습니다.
@@ -360,7 +358,7 @@ useEmptySuspenseEffect(questionData);
 
 또한 Empty 컴포넌트는 내부 구조와 상관없이 어느 컴포넌트까지 교체해서 보여주는지 쉽게 설정할 수 있습니다. 지금은 QuestionAccordionList라는 위치에서 빈 컴포넌트를 보여주지만, 만약 더 상위 컴포넌트까지 이 컴포넌트를 보여주고 싶으면 단순하게 EmptySuspense의 위치만 옮겨주면 됩니다.
 
-```tsx
+```jsx
 <EmptySuspense callback={<QuestionTabPanelBlank />} trigger={onlySelectedOption}>
   // ... 여러 개의 컴포넌트 ...
   <QuestionAccordionList
