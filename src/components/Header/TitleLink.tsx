@@ -12,7 +12,16 @@ type TitleProps = {
 
 const TitleLink = ({ children, to }: TitleProps) => {
   return (
-    <Link to={to}>
+    <Link
+      to={to}
+      onClick={() => {
+        window.gtag('event', 'outbound', {
+          event_category: 'outbound',
+          description: 'title을 이용한 이동',
+          url: to
+        });
+      }}
+    >
       <LogoHeading
         as="h4"
         size="md"
