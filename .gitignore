@@ -5,3 +5,6 @@ src/gatsby-types.d.ts
 .env
 _template/
 .obsidian/
+
+
+.history
