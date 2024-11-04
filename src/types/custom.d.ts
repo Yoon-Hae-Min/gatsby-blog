@@ -11,7 +11,7 @@ interface Window {
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 declare namespace Gtag {
-  interface Gtag {
+  type GtagFunction = {
     (
       command: 'config',
       targetId: string,
@@ -24,7 +24,9 @@ declare namespace Gtag {
       eventName: EventNames | string,
       eventParams?: ControlParams | EventParams | CustomParams
     ): void;
-  }
+  };
+
+  type Gtag = GtagFunction | undefined;
 
   interface CustomParams {
     [key: string]: any;

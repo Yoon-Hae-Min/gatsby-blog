@@ -15,7 +15,7 @@ const TitleLink = ({ children, to }: TitleProps) => {
     <Link
       to={to}
       onClick={() => {
-        window.gtag('event', 'outbound', {
+        window.gtag?.('event', 'outbound', {
           event_category: 'outbound',
           description: 'title을 이용한 이동',
           url: to
