@@ -1,7 +1,7 @@
 import { Box, Heading, Tag, Text } from '@chakra-ui/react';
 import { graphql } from 'gatsby';
 import { getSrc } from 'gatsby-plugin-image';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Comment from '../../../components/Comment';
 import RootLayout from '../../../components/Layout/RootLayout';
@@ -14,6 +14,14 @@ const PostDetailPage = ({ data, children, location }) => {
   const metaTags = data.mdx.frontmatter;
   const tableOfContents = data.mdx.tableOfContents;
   const recommendPosts = data.allMdx.nodes;
+
+  useEffect(() => {
+    if (!location?.isRecommend) return;
+    window.gtag?.('event', 'recommend_post_view', {
+      tag: metaTags.tag,
+      url: location.pathname
+    });
+  }, [location]);
 
   return (
     <RootLayout pathname={location.pathname}>

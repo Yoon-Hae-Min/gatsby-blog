@@ -39,7 +39,7 @@ const RecommendPosts = ({ posts }: RecommendPostsProps) => {
               }}
               key={slug}
               onClick={() => {
-                window.gtag('event', 'recommend', {
+                window.gtag?.('event', 'recommend', {
                   name: title,
                   url: slug
                 });

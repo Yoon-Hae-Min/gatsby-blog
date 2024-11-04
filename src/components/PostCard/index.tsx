@@ -23,7 +23,11 @@ const PostCard = ({ slug, title, tag, createAt, thumbnail }: Props) => {
     setIsHover(false);
   };
   const handleEnterBlog = () => {
-    navigate(`/tag/${tag}/${slug}`);
+    navigate(`/tag/${tag}/${slug}`, {
+      state: {
+        isRecommend: true
+      }
+    });
   };
   const handleEnterTag = () => {
     navigate(`/tag/${tag}`);
