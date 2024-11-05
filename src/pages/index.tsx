@@ -12,6 +12,14 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
   const cardData = data.allMdx.edges;
   const totalPost = data.allMdx.totalCount;
 
+  const handleStructureClickLogging = ({ name, url }: { name: string; url: string }) => {
+    window.gtag?.('event', 'structure_click', {
+      event_category: 'structure',
+      description: name,
+      url: url
+    });
+  };
+
   return (
     <>
       <MainPageLayout pathname={location.pathname}>
@@ -82,19 +90,42 @@ const IndexPage = ({ data, location }: PageProps<Queries.BlogInfoListQuery>) => 
           </Box>
           <DirectoryLink
             depth={1}
-            onClick={() =>
+            onClick={() => {
+              handleStructureClickLogging({
+                name: 'Notion (기술을 설명하는 글)',
+                url: 'https://yoonhaemin.notion.site/FE-haemin-91307a32aaa744bb8dae579bebc4b13b?pvs=4'
+              });
               navigate(
                 'https://yoonhaemin.notion.site/FE-haemin-91307a32aaa744bb8dae579bebc4b13b?pvs=4'
-              )
-            }
+              );
+            }}
           >
             Notion (기술을 설명하는 글)
           </DirectoryLink>
-          <DirectoryLink depth={1} onClick={() => navigate('/tag/all')}>
+          <DirectoryLink
+            depth={1}
+            onClick={() => {
+              handleStructureClickLogging({
+                name: 'Posts (경험을 담은 글)',
+                url: '/tag/all'
+              });
+              navigate('/tag/all');
+            }}
+          >
             Posts (경험을 담은 글)
           </DirectoryLink>
           {Object.entries(TAG_MAP).map(([key, value]) => (
-            <DirectoryLink depth={2} onClick={() => navigate(`/tag/${key}`)} key={key}>
+            <DirectoryLink
+              depth={2}
+              onClick={() => {
+                handleStructureClickLogging({
+                  name: value,
+                  url: `/tag/${key}`
+                });
+                navigate(`/tag/${key}`);
+              }}
+              key={key}
+            >
               {value}
             </DirectoryLink>
           ))}
