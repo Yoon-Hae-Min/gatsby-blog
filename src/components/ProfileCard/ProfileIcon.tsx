@@ -8,6 +8,13 @@ type ProfileIconProps = {
 };
 
 const ProfileIcon = ({ name, path, children }: ProfileIconProps) => {
+  const handleProfileIconClick = () => {
+    window.gtag?.('event', 'profile_click', {
+      event_category: 'profile',
+      description: name,
+      url: path
+    });
+  };
   return (
     <Tooltip
       label={name}
@@ -27,6 +34,7 @@ const ProfileIcon = ({ name, path, children }: ProfileIconProps) => {
         href={path}
         target="_blank"
         size="sm"
+        onClick={handleProfileIconClick}
       >
         {children}
       </IconButton>
