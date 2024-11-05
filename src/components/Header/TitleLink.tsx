@@ -1,12 +1,12 @@
 import { Heading } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import { DEFAULT_FONT_SIZE } from '@/constants/md';
 
 type TitleProps = {
-  children: ReactNode;
+  children: string;
   to: string;
 };
 
@@ -15,9 +15,9 @@ const TitleLink = ({ children, to }: TitleProps) => {
     <Link
       to={to}
       onClick={() => {
-        window.gtag?.('event', 'outbound', {
-          event_category: 'outbound',
-          description: 'title을 이용한 이동',
+        window.gtag?.('event', 'navigation_bar_click', {
+          event_category: 'navigation',
+          description: children,
           url: to
         });
       }}
