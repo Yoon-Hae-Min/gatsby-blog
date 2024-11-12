@@ -48,7 +48,12 @@ const Header = ({ pathname }: { pathname: string }) => {
               _light: {
                 color: theme.colors.gray[800],
                 backgroundColor: `${theme.colors.white[900]}AA`,
-                transition: 'background-color 0.3s ease'
+                transition: 'background-color 0.3s ease',
+
+                path: {
+                  fill: theme.colors.gray[800]
+                }
+                // lottie 내부 아이콘의 색상을 변경하기 위한 코드
               }
             }
           : {

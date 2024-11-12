@@ -1,11 +1,11 @@
-import { IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { IconButton, useColorMode } from '@chakra-ui/react';
 import React from 'react';
+import Lottie from 'react-lottie';
 
-import MoonIcon from '@/assets/svg/moon.svg';
-import SunIcon from '@/assets/svg/sun.svg';
+import moonAnimationData from '@/assets/lottie/moon.json';
+import sunAnimationData from '@/assets/lottie/sun.json';
 
 const ToggleThemeButton = () => {
-  const ToggleThemeIcon = useColorModeValue(MoonIcon, SunIcon);
   const { toggleColorMode, colorMode } = useColorMode();
 
   const handleToggleTheme = () => {
@@ -30,9 +30,34 @@ const ToggleThemeButton = () => {
       onClick={handleToggleTheme}
       backgroundColor="inherit"
       color="inherit"
-      padding="0.3rem"
     >
-      <ToggleThemeIcon />
+      {colorMode === 'light' ? (
+        <Lottie
+          options={{
+            loop: true,
+            autoplay: true,
+            animationData: moonAnimationData,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          }}
+          height={36}
+          width={36}
+        />
+      ) : (
+        <Lottie
+          options={{
+            loop: true,
+            autoplay: true,
+            animationData: sunAnimationData,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          }}
+          height={36}
+          width={36}
+        />
+      )}
     </IconButton>
   );
 };
