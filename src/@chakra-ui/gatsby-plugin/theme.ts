@@ -5,6 +5,10 @@ const theme = extendTheme({
     heading: `Pretendard, sans-serif`,
     body: `Pretendard, sans-serif`
   },
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: true
+  },
   colors: {
     gray: {
       200: '#B1B1B1',
@@ -19,8 +23,7 @@ const theme = extendTheme({
       900: '#FFFFFF'
     }
   },
-  initialColorMode: 'dark',
-  useSystemColorMode: true,
+
   breakpoints: {
     sm: '30rem', // 480px
     md: '48rem', // 768px
