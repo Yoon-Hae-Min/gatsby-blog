@@ -7,6 +7,14 @@ import theme from '@/@chakra-ui/gatsby-plugin/theme';
 import getThemeMode from '@/utils/getThemeMode';
 
 export const wrapRootElement = ({ element }: WrapPageElementBrowserArgs) => {
+  const isChakraUIModeSet = localStorage.getItem('chakra-ui-color-mode') !== null;
+  const isReRenderedBlogTheme = localStorage.getItem('rerender-blog-theme') !== null;
+
+  if (isChakraUIModeSet && !isReRenderedBlogTheme) {
+    localStorage.removeItem('chakra-ui-color-mode');
+    localStorage.setItem('rerender-blog-theme', 'true');
+  }
+
   return (
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
