@@ -6,7 +6,7 @@ const theme = extendTheme({
     body: `Pretendard, sans-serif`
   },
   config: {
-    initialColorMode: 'dark',
+    initialColorMode: 'system',
     useSystemColorMode: true
   },
   colors: {
