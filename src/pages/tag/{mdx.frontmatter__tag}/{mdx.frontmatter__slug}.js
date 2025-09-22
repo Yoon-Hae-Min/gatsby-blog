@@ -115,7 +115,9 @@ export const Head = ({ data }) => {
       <meta property="og:description" content={metaTags.description} />
       <meta
         property="og:image"
-        content={getSrc(metaTags.thumbnail.childImageSharp.gatsbyImageData)}
+        content={`${process.env.GATSBY_DOMAIN_URL}${getSrc(
+          metaTags.thumbnail.childImageSharp.gatsbyImageData
+        )}`}
       />
       <meta property="og:site_name" content={metaTags.title} />
       <meta property="og:locale" content="ko_KR" />
@@ -126,7 +128,9 @@ export const Head = ({ data }) => {
       <meta name="twitter:description" content={metaTags.description} />
       <meta
         name="twitter:image"
-        content={getSrc(metaTags.thumbnail.childImageSharp.gatsbyImageData)}
+        content={`${process.env.GATSBY_DOMAIN_URL}${getSrc(
+          metaTags.thumbnail.childImageSharp.gatsbyImageData
+        )}`}
       />
     </>
   );
