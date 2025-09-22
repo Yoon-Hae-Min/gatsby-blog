@@ -68,6 +68,7 @@ export const query = graphql`
         title
         createAt(formatString: "YYYY.MM.DD")
         tag
+        slug
         description
         thumbnail {
           childImageSharp {
