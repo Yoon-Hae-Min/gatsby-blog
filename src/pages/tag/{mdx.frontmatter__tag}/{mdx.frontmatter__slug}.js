@@ -112,7 +112,7 @@ export const Head = ({ data }) => {
       <meta property="og:type" content="website" />
       <meta
         property="og:url"
-        content={`${process.env.GATSBY_DOMAIN_URL}/tag/${metaTags.tag}/${metaTags.slug}`}
+        content={`${process.env.GATSBY_DOMAIN_URL}tag/${metaTags.tag}/${metaTags.slug}`}
       />
       <meta property="og:title" content={metaTags.title} />
       <meta property="og:description" content={metaTags.description} />
