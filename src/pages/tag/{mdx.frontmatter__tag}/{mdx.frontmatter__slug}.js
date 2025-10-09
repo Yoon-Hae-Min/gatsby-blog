@@ -110,7 +110,10 @@ export const Head = ({ data }) => {
       <meta name="description" content={metaTags.description} />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={`${process.env.GATSBY_DOMAIN_URL}/blog/${metaTags.slug}`} />
+      <meta
+        property="og:url"
+        content={`${process.env.GATSBY_DOMAIN_URL}/tag/${metaTags.tag}/${metaTags.slug}`}
+      />
       <meta property="og:title" content={metaTags.title} />
       <meta property="og:description" content={metaTags.description} />
       <meta
